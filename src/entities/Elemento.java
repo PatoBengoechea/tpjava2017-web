@@ -15,6 +15,9 @@ public class Elemento implements Serializable {
 	CtrlABMCTipoElemento ctrl;
 	private ArrayList<Reserva> reservas;
 	private static int ult = 0;
+	//PROBADO
+	//NUEVO 
+	//REPOSITORIO
 	
 	public ArrayList<Reserva> getReservas() {
 		return reservas;
