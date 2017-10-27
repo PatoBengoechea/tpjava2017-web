@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form class="form-signin" name="signin" action="" method="post">
+<form class="form-signin" name="signin" action="realizaAltaTipo" method="post">
 	<div>
 	<p>ID:</p><input type="text" name="idtxt">
 	</div>
@@ -15,7 +15,7 @@
 	<p>Descripcion:</p><input type="text" name="desctxt">
 	</div>
 	<div>
-	<p>Cantidad Dias Max</p><input type="text" name="Canttxt">
+	<p>Cantidad Dias Max</p><input type="text" name="canttxt">
 	</div>
 	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 

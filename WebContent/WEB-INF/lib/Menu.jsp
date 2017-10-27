@@ -15,6 +15,13 @@
 	<form class="form-signin" name="signin" action="aABMTipoElemento" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM TIPO ELEMENTO</button> 
   	</form>
+  		<form class="form-signin" name="signin" action="" method="post">
+   	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM PROXIMAMENTE</button> 
+  	</form>
+  	<form class="form-signin" name="signin" action="" method="post">
+   	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM PROXIMAMENTE</button> 
+  	</form>
+  	
 	</div>
 </div>
 </body>
