@@ -1,11 +1,11 @@
 package data;
-
 import java.sql.*;
 
-//import com.mysql.jdbc.Connection;
+import util.AppDataException;
+
 
 public class FactoryConexion {
-
+	
 	private String driver="com.mysql.jdbc.Driver";
 	private String host="localhost";
 	private String port="3306";
@@ -14,13 +14,14 @@ public class FactoryConexion {
 	private String db="java2017";
 	
 	private static FactoryConexion instancia;
-	
-	private FactoryConexion() {
+		
+	private FactoryConexion(){
 		try {
-			Class.forName(driver); //POR QUE SE HACE ESTO???
-		} catch (Exception e) {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static FactoryConexion getInstancia(){
@@ -28,31 +29,34 @@ public class FactoryConexion {
 			FactoryConexion.instancia=new FactoryConexion();
 		}
 		return FactoryConexion.instancia;
+		
 	}
+	
 	private Connection conn;
 	private int cantConn=0;
-	public Connection getConn(){
+	public Connection getConn() throws SQLException{
 		try {
 			if(conn==null || conn.isClosed()){	
-				conn = (Connection) DriverManager.getConnection(
+				conn = DriverManager.getConnection(
 			        "jdbc:mysql://"+host+":"+port+"/"+db+"?user="+user+"&password="+password+"&useSSL=false");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		cantConn++;
 		return conn;
 	}
 	
-	public void releaseConn(){
+	public void releaseConn() throws SQLException{
 		try {
 			cantConn--;
 			if(cantConn==0){
 				conn.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
+	
 
 }
