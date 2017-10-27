@@ -18,8 +18,8 @@
   		<form class="form-signin" name="signin" action="aABMPersona" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM Persona</button> 
   	</form>
-  	<form class="form-signin" name="signin" action="" method="post">
-   	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM PROXIMAMENTE</button> 
+  	<form class="form-signin" name="signin" action="aABMReservar" method="post">
+   	<button class="btn btn-lg btn-primary btn-block" type="submit">Reservar</button> 
   	</form>
   	
 	</div>
