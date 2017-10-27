@@ -57,6 +57,4 @@ public class FactoryConexion {
 			throw e;
 		}
 	}
-	
-
 }

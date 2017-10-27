@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,13 +50,17 @@ public class Start extends HttpServlet {
 			
 			Persona pers =ctrl.buscarUsuario(per);
 			
-			//request.setAttribute("listaPersonas", ctrl.getAll());
-			
+			if(pers.getUsuario().equals("vacio"))
+			{
+				PrintWriter out = response.getWriter(); 
+				response.setContentType("text/html"); 
+				out.println("<script> alert("+"USUARIO/PASSWORD INVALIDOS"+"); </script>"); 
+			}
+			else{
 			request.getSession().setAttribute("user", pers);
-			
 			request.getRequestDispatcher("WEB-INF/lib/Menu.jsp").forward(request, response);
 			//response.getWriter().append(user).append(" ").append(pass);
-			
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
