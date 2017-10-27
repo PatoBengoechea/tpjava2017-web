@@ -48,8 +48,8 @@ public class Start extends HttpServlet {
 			
 			CtrlABMCPersona ctrl= new CtrlABMCPersona();
 			
-//			Persona pers =ctrl.buscarUsuario(per);
-//			
+			Persona pers =ctrl.buscarUsuario(per);
+			
 //			if(pers.getUsuario().equals("vacio"))
 //			{
 //				PrintWriter out = response.getWriter(); 
@@ -57,7 +57,7 @@ public class Start extends HttpServlet {
 //				out.println("<script> alert(USUARIO/PASSWORD INVALIDOS); </script>"); 
 //			}
 //			else{
-//			request.getSession().setAttribute("user", pers);
+			request.getSession().setAttribute("user", pers);
 			request.getRequestDispatcher("WEB-INF/lib/Menu.jsp").forward(request, response);
 			//response.getWriter().append(user).append(" ").append(pass);
 //			}
