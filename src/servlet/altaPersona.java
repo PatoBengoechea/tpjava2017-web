@@ -7,21 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controlers.*;
+import controlers.CtrlABMCPersona;
 import entities.Persona;
-import entities.TipoElemento;
 
 /**
- * Servlet implementation class realizaAltaTipo
+ * Servlet implementation class altaPersona
  */
-@WebServlet({ "/realizaAltaTipo", "/realizaaltaTipo" })
-public class realizaAltaTipo extends HttpServlet {
+@WebServlet({ "/altaPersona", "/altapersona" })
+public class altaPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public realizaAltaTipo() {
+    public altaPersona() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,13 +38,8 @@ public class realizaAltaTipo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			TipoElemento tipo = new TipoElemento();
-			CtrlABMCTipoElemento tiposs = new CtrlABMCTipoElemento();
-//			int id = Integer.parseInt(request.getParameter("idtxt"));
-//			String desc =request.getParameter("desctxt");
-//			int cant = Integer.parseInt(request.getParameter("canttxt"));
 			
-			request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/lib/altaPersona.jsp").forward(request, response);
 			
 
 		} catch (Exception e) {

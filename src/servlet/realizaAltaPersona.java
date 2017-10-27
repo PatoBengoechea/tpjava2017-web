@@ -14,14 +14,14 @@ import entities.TipoElemento;
 /**
  * Servlet implementation class realizaAltaTipo
  */
-@WebServlet({ "/realizaAltaTipo", "/realizaaltaTipo" })
-public class realizaAltaTipo extends HttpServlet {
+@WebServlet({ "/realizaAltaPersona", "/realizaaltapersona" })
+public class realizaAltaPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public realizaAltaTipo() {
+    public realizaAltaPersona() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,13 +39,12 @@ public class realizaAltaTipo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			TipoElemento tipo = new TipoElemento();
-			CtrlABMCTipoElemento tiposs = new CtrlABMCTipoElemento();
+			Persona tipo = new Persona();
+			CtrlABMCPersona tiposs = new CtrlABMCPersona();
 //			int id = Integer.parseInt(request.getParameter("idtxt"));
 //			String desc =request.getParameter("desctxt");
-//			int cant = Integer.parseInt(request.getParameter("canttxt"));
-			
-			request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
+//			int cant = Integer.parseInt(request.getParameter("canttxt"));			
+			request.getRequestDispatcher("WEB-INF/lib/ABMPersona.jsp").forward(request, response);
 			
 
 		} catch (Exception e) {
