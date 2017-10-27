@@ -13,7 +13,7 @@
 	</div>
 	<div>
 	<form class="form-signin" name="signin" action="aABMTipoElemento" method="post">
-   	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM TIPO ELEMENTO</button> 
+   	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM Tipo  Elemento</button> 
   	</form>
   		<form class="form-signin" name="signin" action="aABMPersona" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM Persona</button> 
@@ -21,7 +21,9 @@
   	<form class="form-signin" name="signin" action="aABMReservar" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit">Reservar</button> 
   	</form>
-  	
+  	<form class="form-signin" name="signin" action="aABMElemento" method="post">
+   	<button class="btn btn-lg btn-primary btn-block" type="submit">ABM Elemento</button> 
+  	</form>
 	</div>
 </div>
 </body>
