@@ -24,7 +24,7 @@
   		<form class="form-signin" name="signin" action="aABMPersona" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;">ABM Persona</button> 
   	</form>
-  	<form style=" position: fixed;" class="form-signin" name="signin" action="aABMReservar" method="post">
+  	<form class="form-signin" name="signin" action="aABMReservar" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;">Reservar</button> 
   	</form>
   	<form class="form-signin" name="signin" action="aABMElemento" method="post">

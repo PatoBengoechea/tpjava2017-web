@@ -26,26 +26,23 @@ public class realizaAltaPersona extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Persona tipo = new Persona();
 			CtrlABMCPersona tiposs = new CtrlABMCPersona();
-//			int id = Integer.parseInt(request.getParameter("idtxt"));
-//			String desc =request.getParameter("desctxt");
-//			int cant = Integer.parseInt(request.getParameter("canttxt"));			
-			request.getRequestDispatcher("WEB-INF/lib/ABMPersona.jsp").forward(request, response);
-			
+			String dni = request.getParameter("dnitxt").toString();
+			String nombre = request.getParameter("nombretxt").toString();
+			String apellido = request.getParameter("apellidotxt").toString();
+			boolean hab = true;
+			String usuario = request.getParameter("usuariotxt").toString();
+			String password = request.getParameter("passwordtxt").toString();
+			Persona per = new Persona(nombre, apellido, dni, usuario, password);
+			per.setHabilitado(hab);
+			tiposs.addPersona(per);
+			request.getRequestDispatcher("WEB-INF/lib/ABMPersona.jsp").forward(request, response);	
 
 		} catch (Exception e) {
 			e.printStackTrace();

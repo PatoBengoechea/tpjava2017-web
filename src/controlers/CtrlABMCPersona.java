@@ -49,5 +49,12 @@ public class CtrlABMCPersona {
  	public void validoUser() {
 		
 	}
+ 	
+ 	public void eliminoPer(int id)
+ 	{
+ 		datap.delete(id);
+ 	}
+ 	
+ 	
 	
 }

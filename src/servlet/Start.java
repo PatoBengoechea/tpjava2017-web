@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ import controlers.CtrlABMCPersona;
 import entities.Persona;
 
 /**
- * Servlet implementation class Start
+ * {@link Servlet} implementation class Start
  */
 @WebServlet({ "/Start", "/start" })
 public class Start extends HttpServlet {
@@ -60,12 +61,11 @@ public class Start extends HttpServlet {
 			request.getSession().setAttribute("user", pers);
 			request.getRequestDispatcher("WEB-INF/lib/Menu.jsp").forward(request, response);
 			//response.getWriter().append(user).append(" ").append(pass);
-//			}
-			
+//			}		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//doGet(request, response);
+		
 	}
 
 }

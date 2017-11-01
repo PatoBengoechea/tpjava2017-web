@@ -1,3 +1,4 @@
+<%@page import="controlers.CtrlABMCPersona"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page import= "entities.*" %> 
@@ -6,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -34,15 +35,8 @@
     </thead>
     <% 
     ArrayList<Persona> lista = new ArrayList<Persona>();
-    	Persona tipito = new Persona();
-		tipito.setIdPersona(1);
-		tipito.setNombre("MARCOS");
-		tipito.setApellido("ROSSOTTO");
-		tipito.setDni("12345678");
-		tipito.setHabilitado(true);
-		tipito.setUsuario("rossotto");
-		tipito.setPassword("12345");
-		lista.add(tipito);
+    CtrlABMCPersona ctrl = new CtrlABMCPersona();
+    lista = ctrl.getAll();
 
 		for (Persona tipo : lista){ %>
     <tbody>
@@ -54,8 +48,18 @@
         <td><%= tipo.isHabilitado() %></td>
         <td><%= tipo.getUsuario()%>
         <td><%= tipo.getPassword()%>
-        <td><button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button></td>
-        <td><button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar</button></td>
+        <td>
+		<form class="form-signin" action ="editarPer" method="post">
+			<input type="hidden" name="idPer" value="<%= tipo.getIdPersonaString() %>">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
+        </form>
+        </td>
+        <td>
+        <form class="form-signin" action="eliminarPersona" method="Post">
+        	<input type="hidden" name="idPersona" value="<%= tipo.getIdPersonaString() %>">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar</button>
+        </form>
+        </td>
       </tr>
     <% } %>  
     </tbody>

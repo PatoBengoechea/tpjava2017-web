@@ -82,7 +82,7 @@ public class DataPersona {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idPersona, nombre, apellido, dni, habilitado, usuario, contraseï¿½a from persona where idPersona = ? ");
+					"select idPersona, nombre, apellido, dni, habilitado, usuario, contraseña from persona where idPersona = ? ");
 			stmt.setInt(1, per.getIdPersona());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){
@@ -93,10 +93,9 @@ public class DataPersona {
 					p.setDni(rs.getString("dni"));
 					p.setHabilitado(rs.getBoolean("habilitado"));
 					p.setUsuario(rs.getString("usuario"));
-					p.setPassword(rs.getString("contraseï¿½a"));
+					p.setPassword(rs.getString("contraseña"));
 					return p;
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -117,11 +116,10 @@ public class DataPersona {
 	
 	public void add(Persona p){
 		PreparedStatement stmt=null;
-		ResultSet keyResultSet=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into Persona(dni, nombre, apellido, habilitado, usuario, contraseï¿½a) values (?,?,?,?, ?, ?)",
+					"insert into Persona(dni, nombre, apellido, habilitado, usuario, contraseña) values (?,?,?,?, ?, ?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, p.getDni());
@@ -131,15 +129,10 @@ public class DataPersona {
 			stmt.setString(5, p.getUsuario());
 			stmt.setString(6, p.getPassword());
 			stmt.executeUpdate();
-			keyResultSet=stmt.getGeneratedKeys();
-			if(keyResultSet!=null && keyResultSet.next()){
-				p.setIdPersona(keyResultSet.getInt(1));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		try {
-			if(keyResultSet!=null)keyResultSet.close();
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
@@ -147,27 +140,26 @@ public class DataPersona {
 		}
 	}
 
-//	public void delete(Persona per) {
-//		PreparedStatement stmt=null;
-//		ResultSet rs = null;
-//		try {
-//			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-//					"delete from Persona where id = ?");
-//			stmt.setInt(1, per.getIdPersona());
-//			rs=stmt.executeQuery();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} 
-//		
-//		try {
-//			if(rs!=null)rs.close();
-//			if(stmt!=null)stmt.close();
-//			FactoryConexion.getInstancia().releaseConn();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void delete(int idper) {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn()
+					.prepareStatement(
+					"delete from Persona where idPersona = ?");
+			stmt.setInt(1, idper);
+		    stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void update(Persona per) {
 		PreparedStatement stmt=null;
@@ -194,27 +186,7 @@ public class DataPersona {
 		}
 	
 	}
-	public void delete(Persona per) {
-		PreparedStatement stmt=null;
-		try {
-			stmt=FactoryConexion.getInstancia().getConn()
-					.prepareStatement(
-					"update Persona(habilitado) values (?) where idPersona = ?");
-			stmt.setBoolean(1, false);
-			stmt.setInt(2, per.getIdPersona());
-			stmt.executeUpdate();
-			}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			if(stmt!=null)stmt.close();
-			FactoryConexion.getInstancia().releaseConn();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	
-	}
 	
 	
 //	public Persona getById(Persona per){

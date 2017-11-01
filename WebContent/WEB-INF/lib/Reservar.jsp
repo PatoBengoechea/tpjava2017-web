@@ -29,10 +29,10 @@
     <input type="fecha-fin" class="form-control" id="Fecha de Fin de Reserva" style="width:100px;height:35px" >
   </div>
    <div class="dropdown" >
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="bottom:30px">Tipo de Recinto<span class="caret"></span></button>
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="bottom:30px" >Tipo de Recinto<span class="caret"></span></button>
 	</div> 
 	 <div class="dropdown" style="margin-bottom: 30px; margin-top: 30px;">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Recinto
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Recinto
   <span class="caret"></span></button>
 	</div> 
   <button type="submit" class="btn btn-default">Reservar</button>

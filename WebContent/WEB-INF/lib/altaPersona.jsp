@@ -8,7 +8,6 @@
 </head>
 <body>
 <form class="form-signin" name="signin" action="realizaAltaPersona" method="post">
-	<p>ID:<input type="text" name="idtxt"></p>
 	<p>Nombre<input type="text" name="nombretxt"></p>
 	<p>Apellido<input type="text" name="apellidotxt"></p>
 	<p>DNI<input type="text" name="dnitxt"></p>
