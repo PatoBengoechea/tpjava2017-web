@@ -1,4 +1,5 @@
 
+<%@page import="controlers.CtrlABMCTipoElemento"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page import= "entities.*" %> 
@@ -30,21 +31,27 @@
       </tr>
     </thead>
     <% 
+    CtrlABMCTipoElemento ctrl = new CtrlABMCTipoElemento();
     ArrayList<TipoElemento> lista = new ArrayList<TipoElemento>();
-		TipoElemento tipito = new TipoElemento("bar",10);
-		tipito.setIdTipo(1);
-		lista.add(tipito);
-		tipito = new TipoElemento("teatro",10);
-		tipito.setIdTipo(2);
-		lista.add(tipito);
+		lista = ctrl.getAll();
 		for (TipoElemento tipo : lista){ %>
     <tbody>
       <tr>
         <td><%= tipo.getIdTipo() %></td>
         <td><%= tipo.getDescTipo() %></td>
         <td><%= tipo.getCantdiasMax() %></td>
-        <td><button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button></td>
-        <td><button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar</button></td>
+        <td>
+		<form class="form-signin" action ="editarTipo" method="post">
+			<input type="hidden" name="idTip" value="<%= tipo.getIdTipo() %>">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
+        </form>
+        </td>
+        <td>
+        <form class="form-signin" action="eliminarTipo" method="Post">
+        	<input type="hidden" name="idTipo" value="<%= tipo.getIdTipo() %>">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar</button>
+        </form>
+        </td>
       </tr>
     <%} %>  
     

@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import entities.Persona;
 import entities.TipoElemento;
 
 public class DataTipoElemento {
@@ -45,12 +47,13 @@ public class DataTipoElemento {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idTipo, descripcion from tipoelemento where idTipo = ?");
+					"select idTipo, descripcion, cantDiasMax from tipoelemento where idTipo = ?");
 			stmt.setInt(1, t.getIdTipo());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){	
 				tipoelemento.setIdTipo(rs.getInt("idTipo"));
 				tipoelemento.setDescTipo(rs.getString("descripcion"));
+				tipoelemento.setCantdiasMax(rs.getInt("cantDiasMax"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,31 +71,65 @@ public class DataTipoElemento {
 	
 	public void add(TipoElemento tipoe){
 		PreparedStatement stmt=null;
-		ResultSet keyResultSet=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into TipoElemento(idTipo, descripcion, cantDiasMax) values (?,?,?)",
-					PreparedStatement.RETURN_GENERATED_KEYS
+					"insert into tipoelemento(descripcion, cantDiasMax) values (?,?)"
 					);
-			stmt.setInt(1, tipoe.getIdTipo());
-			stmt.setString(2, tipoe.getDescTipo());
-			stmt.setInt(3, tipoe.getCantdiasMax());
+			stmt.setString(1, tipoe.getDescTipo().toString());
+			stmt.setInt(2, tipoe.getCantdiasMax());
 			stmt.executeUpdate();
-			keyResultSet=stmt.getGeneratedKeys();
-			if(keyResultSet!=null && keyResultSet.next()){
-				tipoe.setIdTipo(keyResultSet.getInt(1));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		try {
-			if(keyResultSet!=null)keyResultSet.close();
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
 	
+	public void update(TipoElemento tipo) {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn()
+					.prepareStatement(
+					"update tipoelemento set descripcion = ?, cantDiasMax = ? where idTipo = ?");
+			stmt.setString(1, tipo.getDescTipo());
+			stmt.setInt(2, tipo.getCantdiasMax());	
+			stmt.setInt(3, tipo.getIdTipo());
+			stmt.executeUpdate();
+			}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	public void delete(TipoElemento tipo) {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn()
+					.prepareStatement(
+					"delete from tipoelemento where idTipo = ?");
+			stmt.setInt(1, tipo.getIdTipo());
+			stmt.executeUpdate();			
+			}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

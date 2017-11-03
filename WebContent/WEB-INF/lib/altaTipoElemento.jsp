@@ -9,7 +9,7 @@
 <body>
 <form class="form-signin" name="signin" action="realizaAltaTipo" method="post">
 	<div>
-	<p>ID:</p><input type="text" name="idtxt">
+	<p>ID:</p><input type="text" disabled="disabled" name="idtxt">
 	</div>
 	<div>
 	<p>Descripcion:</p><input type="text" name="desctxt">

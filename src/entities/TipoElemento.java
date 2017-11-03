@@ -13,8 +13,8 @@ public class TipoElemento implements Serializable {
 		return cantdiasMax;
 	}
 
-	public void setCantdiasMax(int cantdiasMax) {
-		this.cantdiasMax = cantdiasMax;
+	public void setCantdiasMax(int cant) {
+		this.cantdiasMax = cant;
 	}
 
 	public TipoElemento(){}

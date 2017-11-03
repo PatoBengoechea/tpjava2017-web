@@ -34,13 +34,13 @@ public class realizaAltaTipo extends HttpServlet {
 		try {
 			TipoElemento tipo = new TipoElemento();
 			CtrlABMCTipoElemento tiposs = new CtrlABMCTipoElemento();
-//			int id = Integer.parseInt(request.getParameter("idtxt"));
-//			String desc =request.getParameter("desctxt");
-//			int cant = Integer.parseInt(request.getParameter("canttxt"));
-			
+			String desc = request.getParameter("desctxt").toString();
+			String cant = request.getParameter("canttxt").toString();
+			int cantidad = Integer.parseInt(cant);
+			tipo.setDescTipo(desc);
+			tipo.setCantdiasMax(cantidad);
+			tiposs.Add(tipo);
 			request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
-			
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
