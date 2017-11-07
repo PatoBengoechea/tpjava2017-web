@@ -10,7 +10,6 @@ public class DataElemento {
 	
 	public void add(Elemento el){
 		PreparedStatement stmt=null;
-		ResultSet keyResultSet=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
@@ -22,15 +21,10 @@ public class DataElemento {
 			stmt.setInt(3, el.getCapacidad());
 			stmt.setInt(4, el.getTipo().getIdTipo());
 			stmt.executeUpdate();
-			keyResultSet=stmt.getGeneratedKeys();
-			if(keyResultSet!=null && keyResultSet.next()){
-				el.setIdElemento(keyResultSet.getInt(1));
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-			if(keyResultSet!=null)keyResultSet.close();
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {

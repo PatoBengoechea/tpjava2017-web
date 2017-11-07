@@ -1,4 +1,5 @@
 
+<%@page import="controlers.CtrlABMCElemento"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page import= "entities.*" %> 
@@ -32,16 +33,9 @@
       </tr>
     </thead>
     <% 
-    ArrayList<Elemento> lista = new ArrayList<Elemento>();
-		Elemento elementito = new Elemento();
-		elementito.setIdElemento(1);
-		elementito.setDescripcion("ALFONSITO");
-		elementito.setCapacidad(2000);
-		elementito.setUbicacion("Pellegrini al fondo");
-		TipoElemento tipito = new TipoElemento("bar",10);
-		tipito.setIdTipo(1);
-		elementito.setTipo(tipito);
-		lista.add(elementito);
+    	CtrlABMCElemento controladorE = new CtrlABMCElemento();
+    	ArrayList<Elemento> lista = new ArrayList<Elemento>();
+		lista = controladorE.getAll();
 		for (Elemento elem : lista){ %> 
     <tbody>
       <tr>
@@ -50,8 +44,6 @@
 		<td><%= elem.getCapacidad() %></td>
         <td><%= elem.getUbicacion() %></td>
         <td><%= elem.getTipo().getDescTipo() %></td>
-        
-        
         <td><button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 93px; ">Editar</button></td>
         <td><button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 87px; ">Eliminar</button></td>
       </tr>
