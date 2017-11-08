@@ -1,3 +1,6 @@
+<%@page import="controlers.CtrlABMCTipoElemento"%>
+<%@page import="entities.TipoElemento"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,19 +12,29 @@
 <body>
 <form class="form-signin" name="signin" action="realizaAltaElemento" method="post">
 	<div>
-	<p>ID:</p><input type="text" name="idtxt">
+	<p>ID:<input type="text" disabled="disabled" name="idtxt"></p>
 	</div>
 	<div>
-	<p>Ubucacion:</p><input type="text" name="ubictxt">
+	<p>Ubucacion:<input type="text" name="ubictxt"></p>
 	</div>
 	<div>
-	<p>Descripcion:</p><input type="text" name="desctxt">
+	<p>Descripcion:<input type="text" name="desctxt"></p>
 	</div>
 	<div>
-	<p>Capacidad</p><input type="text" name="capactxt">
+	<p>Capacidad:<input type="text" name="capactxt"></p>
 	</div>
 	<div>
-	<p>Tipo</p><input type="text" name="tipotxt">
+	<%
+		CtrlABMCTipoElemento controladorTE = new CtrlABMCTipoElemento();
+		ArrayList<TipoElemento> listatipos = new ArrayList<TipoElemento>();
+	    listatipos = controladorTE.getAll();
+	 %>
+	<p>Tipo:
+	<select name="tipoElemento" >
+	<%for(TipoElemento tipo : listatipos){ %>
+  		<option  value="<% tipo.getIdTipo();%>" ><%= tipo.getDescTipo() %></option>
+  		<%} %> 
+	</select>
 	</div>
 	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
