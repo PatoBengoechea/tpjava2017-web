@@ -31,17 +31,10 @@
         <th>ELIMINAR</th>
       </tr>
     </thead>
-    <% 
+    <%
+    CtrlABMCElemento ctrl = new CtrlABMCElemento();
     ArrayList<Elemento> lista = new ArrayList<Elemento>();
-		Elemento elementito = new Elemento();
-		elementito.setIdElemento(1);
-		elementito.setDescripcion("ALFONSITO");
-		elementito.setCapacidad(2000);
-		elementito.setUbicacion("Pellegrini al fondo");
-		TipoElemento tipito = new TipoElemento("bar",10);
-		tipito.setIdTipo(1);
-		elementito.setTipo(tipito);
-		lista.add(elementito);
+	lista = ctrl.getAll();
 		for (Elemento elem : lista){ %> 
     <tbody>
       <tr>
