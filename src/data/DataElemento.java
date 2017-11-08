@@ -42,11 +42,16 @@ public class DataElemento {
 			if(rs!=null){
 				while(rs.next()){
 					Elemento t = new Elemento();
+					TipoElemento te = new TipoElemento();
+					DataTipoElemento dt = new DataTipoElemento();
 					t.setIdElemento(rs.getInt("idElemento"));
 					t.setUbicacion(rs.getString("ubicacion"));
 					t.setDescripcion(rs.getString("descripcion"));
 					t.setCapacidad(rs.getInt("capacidad"));
-					t.setTipo(rs.getInt("idTipo"));
+					te.setIdTipo(rs.getInt("idTipo"));
+					TipoElemento te2 = new TipoElemento();
+					te2 = dt.getById(te);
+					t.setTipo(te2);
 					elementos.add(t);
 					}	
 				}

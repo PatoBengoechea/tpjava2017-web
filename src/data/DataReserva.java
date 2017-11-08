@@ -104,7 +104,7 @@ import entities.TipoElemento;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 				try {
 					stmt =  FactoryConexion.getInstancia().getConn().createStatement();
-					rs = stmt.executeQuery("select r.idReserva, p.idPersona,p.nombre, p.apellido, p.dni, p.habilitado, p.usuario, p.contraseña, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from Reserva r left join Persona p on r.idPersona = p.idPersona left join Elemento e on r.idElemento = e.idElemento left join TipoElemento te on e.idTipo = te.idTipo");
+					rs = stmt.executeQuery("select r.idReserva, p.idPersona,p.nombre, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from Reserva r left join Persona p on r.idPersona = p.idPersona left join Elemento e on r.idElemento = e.idElemento left join TipoElemento te on e.idTipo = te.idTipo");
 					if(rs!=null){
 						while(rs.next()){
 							Reserva r = new Reserva();
@@ -126,7 +126,7 @@ import entities.TipoElemento;
 							p.setHabilitado(rs.getBoolean("p.habilitado"));
 							p.setIdPersona(rs.getInt("p.idPersona"));
 							p.setNombre(rs.getString("p.nombre"));
-							p.setPassword(rs.getString("p.contraseña"));
+							p.setPassword(rs.getString("p.password"));
 							p.setUsuario(rs.getString("p.usuario"));
 							
 							r.setElemento(e);
@@ -189,7 +189,7 @@ import entities.TipoElemento;
 				try {
 					
 					stmt=FactoryConexion.getInstancia().getConn().prepareStatement
-							("select r.idReserva, p.nombre, p.idPersona, p.apellido, p.dni, p.habilitado, p.usuario, p.contraseña, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from Reserva r left join Persona p on r.idPersona = p.idPersona left join Elemento e on e.idElemento=? left join TipoElemento te on e.idTipo = te.idTipo");
+							("select r.idReserva, p.nombre, p.idPersona, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from Reserva r left join Persona p on r.idPersona = p.idPersona left join Elemento e on e.idElemento=? left join TipoElemento te on e.idTipo = te.idTipo");
 						stmt.setInt(1, el.getIdElemento());	
 						rs = stmt.executeQuery();
 					if(rs!=null){
@@ -212,7 +212,7 @@ import entities.TipoElemento;
 							p.setHabilitado(rs.getBoolean("p.habilitado"));
 							p.setIdPersona(rs.getInt("p.idPersona"));
 							p.setNombre(rs.getString("p.nombre"));
-							p.setPassword(rs.getString("p.contraseña"));
+							p.setPassword(rs.getString("p.password"));
 							p.setUsuario(rs.getString("p.usuario"));
 							
 							r.setElemento(e);

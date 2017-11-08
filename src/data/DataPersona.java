@@ -22,7 +22,7 @@ public class DataPersona {
 					p.setDni(rs.getString("dni"));
 					p.setHabilitado(rs.getBoolean("habilitado"));
 					p.setUsuario(rs.getString("usuario"));
-					p.setPassword(rs.getString("contraseña"));
+					p.setPassword(rs.getString("password"));
 					Personas.add(p);
 				}
 		} 
@@ -46,7 +46,7 @@ public class DataPersona {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idPersona, nombre, apellido, dni, habilitado, usuario, contraseña from persona where dni=?");
+					"select idPersona, nombre, apellido, dni, habilitado, usuario, password from persona where dni=?");
 			stmt.setString(1, per.getDni());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){
@@ -57,7 +57,7 @@ public class DataPersona {
 					p.setDni(rs.getString("dni"));
 					p.setHabilitado(rs.getBoolean("habilitado"));
 					p.setUsuario(rs.getString("usuario"));
-					p.setPassword(rs.getString("contraseï¿½a"));
+					p.setPassword(rs.getString("password"));
 					
 			}
 			
@@ -82,7 +82,7 @@ public class DataPersona {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idPersona, nombre, apellido, dni, habilitado, usuario, contraseña from persona where idPersona = ? ");
+					"select idPersona, nombre, apellido, dni, habilitado, usuario, password from persona where idPersona = ? ");
 			stmt.setInt(1, per.getIdPersona());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){
@@ -93,7 +93,7 @@ public class DataPersona {
 					p.setDni(rs.getString("dni"));
 					p.setHabilitado(rs.getBoolean("habilitado"));
 					p.setUsuario(rs.getString("usuario"));
-					p.setPassword(rs.getString("contraseña"));
+					p.setPassword(rs.getString("password"));
 					return p;
 			}
 		} catch (SQLException e) {
@@ -119,7 +119,7 @@ public class DataPersona {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into Persona(dni, nombre, apellido, habilitado, usuario, contraseña) values (?,?,?,?, ?, ?)",
+					"insert into Persona(dni, nombre, apellido, habilitado, usuario, password) values (?,?,?,?, ?, ?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, p.getDni());
@@ -166,7 +166,7 @@ public class DataPersona {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"update persona set nombre = ?, apellido = ?, habilitado = ?, usuario=?, contraseña=? where idPersona = ?");
+					"update persona set nombre = ?, apellido = ?, habilitado = ?, usuario=?, password=? where idPersona = ?");
 			stmt.setString(1, per.getNombre());
 			stmt.setString(2, per.getApellido());	
 			stmt.setBoolean(3, per.isHabilitado());

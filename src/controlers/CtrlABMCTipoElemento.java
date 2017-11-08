@@ -31,6 +31,10 @@ public class CtrlABMCTipoElemento {
 	public void eliminoTip(TipoElemento tipo) {
 		datatipo.delete(tipo);
 	}
+	public TipoElemento getByID(TipoElemento te)
+	{
+		return datatipo.getById(te);
+	}
 
 
 }
