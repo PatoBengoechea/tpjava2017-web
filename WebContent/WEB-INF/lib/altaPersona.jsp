@@ -13,7 +13,7 @@
 	<p>DNI<input type="text" name="dnitxt"></p>
 	<p>Habilitado <input type="checkbox" name="habchecbox"></p>
 	<p>Usuario<input type="text" name="usuariotxt"></p>
-	<p>Password<input type="text" name="passwordtxt"></p>
+	<p>Password<input type="Password" name="passwordtxt"></p>
 	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
 	</div>

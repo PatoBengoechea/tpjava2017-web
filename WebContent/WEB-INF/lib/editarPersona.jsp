@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>TP Java WEB 2017</title>
 </head>
 <body>
 <% CtrlABMCPersona ctrlPer = new CtrlABMCPersona();
@@ -23,7 +23,7 @@
 	<div><label>DNI</label><input type="text" name="dnitxt" value=<%= perso.getDni()%>></div>
 	<div><label>Habilitado</label><input type="checkbox" name="habchecbox" ></div>
 	<div><label>Usuario</label><input type="text" name="usuariotxt" value=<%= perso.getUsuario()%>></div>
-	<div><label>Password</label><input type="text" name="passwordtxt" value=<%= perso.getPassword()%>></div>
+	<div><label>Password</label><input type="Password" name="passwordtxt" value=<%= perso.getPassword()%>></div>
 	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
 	</div>
