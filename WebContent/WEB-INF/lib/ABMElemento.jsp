@@ -45,7 +45,10 @@
         <td><%= elem.getUbicacion() %></td>
         <td><%= elem.getTipo().getDescTipo() %></td>
         <td><button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 93px; ">Editar</button></td>
+        <form class="form-signin" action="eliminarElemento" method="Post">
+        	<input type="hidden" name="idElemento" value="<%= elem.getIdElemento() %>">
         <td><button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 87px; ">Eliminar</button></td>
+        </form>
       </tr>
     <%} %>  
     

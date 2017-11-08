@@ -1,0 +1,4 @@
+ELEMENTO
+	*modificar Elemento
+	*cuando agregas uno, agrega siempre el mismo tipo(ver como pasar string desde dropdawnlist)
+	

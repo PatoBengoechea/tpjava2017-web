@@ -38,7 +38,7 @@ public class realizaAltaElemento extends HttpServlet {
 			TipoElemento te = new TipoElemento();
 			CtrlABMCElemento ctrle = new CtrlABMCElemento();
 			CtrlABMCTipoElemento ctrlte = new CtrlABMCTipoElemento();
-			String desctipo = request.getParameter("tipoElemento").toString();
+			String desctipo = (request.getParameter("tipoElemento").toString());
 			
 			if(desctipo.equals("Teatro"))
 			{
@@ -58,6 +58,7 @@ public class realizaAltaElemento extends HttpServlet {
 			e.setDescripcion(request.getParameter("desctxt").toString());
 			e.setUbicacion(request.getParameter("ubictxt").toString());
 			e.setTipo(te);
+			ctrle.Add(e);
 			
 			
 //			Elemento tipo = new Elemento();

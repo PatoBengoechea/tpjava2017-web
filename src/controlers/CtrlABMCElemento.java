@@ -29,7 +29,10 @@ public class CtrlABMCElemento {
 	public ArrayList<Elemento> getByTipo(TipoElemento te){
 		return de.getByTipo(te);
 	}
-			
+	public void deleteElemento(Elemento e)
+	{
+		de.delete(e);
+	}
 }
 	
 	

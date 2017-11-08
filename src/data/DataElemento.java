@@ -175,4 +175,27 @@ public class DataElemento {
 //		
 		return es;
 	}
+	
+	
+	
+	public void delete(Elemento el) {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn()
+					.prepareStatement(
+					"delete from Elemento where idElemento = ?");
+			stmt.setInt(1, el.getIdElemento());
+		    stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
