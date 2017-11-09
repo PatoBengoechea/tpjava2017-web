@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="entities.TipoElemento"%>
+<%@page import="controlers.CtrlABMCTipoElemento"%>
 <%@page import="entities.Elemento"%>
 <%@page import="controlers.CtrlABMCElemento"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,15 +21,33 @@
 <body>
 <% CtrlABMCElemento ctrl = new CtrlABMCElemento();
 	Elemento el = new Elemento();
-	el.setIdElemento(Integer.parseInt(request.getAttribute("idElemento2").toString()));
+	int id = Integer.parseInt(request.getAttribute("idElemento2").toString());
+	el.setIdElemento(id);
 	el = ctrl.getByID(el); %>
 <form name="signin" action="realizaModiElemento" method="post">
 	<label>ID:</label><input type="text" name="idtxt" disabled="disabled" value=<%=el.getIdElemento()%>>
-	<input type="hidden" name="ide" value=<%=el.getIdElemento()%>>
+	<input type="hidden" name="idehi" value=<%=id%>>
 	<div><label>Ubicacion</label><input type="text" name="ubicaciontxt" value=<%=el.getUbicacion()%>></div>
-	<div><label>Descripcion</label><input type="text" name="descripciontxt" value=<%el.getDescripcion()%>></div>
+	<div><label>Descripcion</label><input type="text" name="descripciontxt" value=<%=el.getDescripcion()%>></div>
 	<div><label>Capacidad</label><input type="text" name="capacidadtxt" value=<%=el.getCapacidad()%>></div>
-	<div><label>ID Tipo</label><input type="text" name="idTipo" value=<%=el.getTipo().getIdTipo()%>></div>
+	<div>
+	<%
+		CtrlABMCTipoElemento controladorTE = new CtrlABMCTipoElemento();
+		ArrayList<TipoElemento> listatipos = new ArrayList<TipoElemento>();
+	    listatipos = controladorTE.getAll();
+	 %>
+	<p>Tipo:
+	<select name="tipoElemento" >
+	<%for(TipoElemento tipo : listatipos){
+		if(tipo.getIdTipo()== el.getTipo().getIdTipo()){
+		%>
+		<option  value="<% tipo.getIdTipo();%>" selected="selected"><%= tipo.getDescTipo() %></option>
+		<%}
+		else{%>
+  		<option  value="<% tipo.getIdTipo();%>" ><%= tipo.getDescTipo() %></option>
+  		<%}} %> 
+	</select>
+	</div>
 	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
 	</div>

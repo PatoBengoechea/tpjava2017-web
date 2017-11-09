@@ -38,22 +38,25 @@
 		lista = controladorE.getAll();
 		for (Elemento elem : lista){ %> 
     <tbody>
+    
       <tr>
         <td><%= elem.getIdElemento() %></td>
         <td><%= elem.getDescripcion() %></td>
 		<td><%= elem.getCapacidad() %></td>
         <td><%= elem.getUbicacion() %></td>
         <td><%= elem.getTipo().getDescTipo() %></td>
-        
+        <td>
         <form class="form-signin" action="modificarElemento" method="Post">
         	<input type="hidden" name="idElemento" value="<%= elem.getIdElemento()%>">
-        	<td><button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 93px; ">Editar</button></td>
+        	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 93px; ">Editar</button>
         </form>
-        
+        </td>
+        <td>
         <form class="form-signin" action="eliminarElemento" method="Post">
         	<input type="hidden" name="idElemento" value="<%= elem.getIdElemento() %>">
-        	<td><button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 87px; ">Eliminar</button></td>
+        	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 87px; ">Eliminar</button>
         </form>
+        </td>
       </tr>
     <%} %>  
     

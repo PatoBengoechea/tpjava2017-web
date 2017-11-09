@@ -11,7 +11,6 @@ public class CtrlABMCElemento {
 	private DataElemento de;
 	public CtrlABMCElemento() {
 		de = new DataElemento();
-		//123
 	}
 	
 	public void Add(Elemento elemento) {

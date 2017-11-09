@@ -25,13 +25,6 @@ public class realizaModiElemento extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,14 +32,12 @@ public class realizaModiElemento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Elemento el = new Elemento();
 		CtrlABMCElemento ctrl = new CtrlABMCElemento();
-		el.setIdElemento(Integer.parseInt(request.getAttribute("ide").toString()));
+		el.setIdElemento(Integer.parseInt((String)request.getAttribute("idehi")));
+		el.setUbicacion(request.getAttribute("ubicaciontxt").toString());
 		el.setCapacidad(Integer.parseInt(request.getAttribute("capacidadtxt").toString()));
-		el.setCapacidad(Integer.parseInt(request.getAttribute("capacidadtxt").toString()));
-		el.getTipo().setIdTipo(Integer.parseInt(request.getAttribute("idTipo").toString()));
+		el.setDescripcion(request.getAttribute("descripciontxt").toString());
+		el.getTipo().setIdTipo(Integer.parseInt(request.getAttribute("tipoElemento").toString()));
 		ctrl.update(el);
-		request.getRequestDispatcher("WEB-INF/lib/ABMElemento.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("WEB-INF/lib/ABMElemento.jsp").forward(request, response);	
 	}
-
 }

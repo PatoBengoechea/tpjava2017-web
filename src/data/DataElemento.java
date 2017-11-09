@@ -207,11 +207,12 @@ public class DataElemento {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"update Elemento set ubicacion = ?, descripcion = ?, capacidad = ?, idtipo=? idElemento = ?");
+					"update elemento set ubicacion = ?, descripcion = ?, capacidad = ?, idTipo=? where idElemento = ?");
 			stmt.setString(1, el.getUbicacion());
 			stmt.setString(2, el.getDescripcion());	
 			stmt.setInt(3, el.getCapacidad());
 			stmt.setInt(4, el.getTipo().getIdTipo());
+			stmt.setInt(5, el.getIdElemento());
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {
