@@ -38,7 +38,7 @@ public class realizaModiElemento extends HttpServlet {
 		el.setDescripcion(request.getParameter("descripciontxt").toString());
 		int idTipito;
 		idTipito = Integer.parseInt(((String)request.getParameter("tipElem")));
-		el.getTipo().setIdTipo(2);
+		el.getTipo().setIdTipo(idTipito);
 		ctrl.update(el);
 		request.getRequestDispatcher("WEB-INF/lib/ABMElemento.jsp").forward(request, response);	
 	}
