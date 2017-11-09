@@ -32,11 +32,13 @@ public class realizaModiElemento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Elemento el = new Elemento();
 		CtrlABMCElemento ctrl = new CtrlABMCElemento();
-		el.setIdElemento(Integer.parseInt((String)request.getAttribute("idehi")));
-		el.setUbicacion(request.getAttribute("ubicaciontxt").toString());
-		el.setCapacidad(Integer.parseInt(request.getAttribute("capacidadtxt").toString()));
-		el.setDescripcion(request.getAttribute("descripciontxt").toString());
-		el.getTipo().setIdTipo(Integer.parseInt(request.getAttribute("tipoElemento").toString()));
+		el.setIdElemento(Integer.parseInt(request.getParameter("idehi").toString()));
+		el.setUbicacion(request.getParameter("ubicaciontxt").toString());
+		el.setCapacidad(Integer.parseInt(request.getParameter("capacidadtxt").toString()));
+		el.setDescripcion(request.getParameter("descripciontxt").toString());
+		int idTipito;
+		idTipito = Integer.parseInt(((String)request.getParameter("tipElem")));
+		el.getTipo().setIdTipo(2);
 		ctrl.update(el);
 		request.getRequestDispatcher("WEB-INF/lib/ABMElemento.jsp").forward(request, response);	
 	}

@@ -38,8 +38,8 @@ public class TipoElemento implements Serializable {
 		return idTipo;
 	}
 
-	public void setIdTipo(int idTipo) {
-		this.idTipo = idTipo;
+	public void setIdTipo(int idtipo) {
+		this.idTipo = idtipo;
 	}
 
 	public String getDescTipo() {

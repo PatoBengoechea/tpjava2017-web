@@ -32,7 +32,7 @@
 	<p>Tipo:
 	<select name="tipoElemento" >
 	<%for(TipoElemento tipo : listatipos){ %>
-  		<option  value="<% tipo.getIdTipo();%>" ><%= tipo.getDescTipo() %></option>
+  		<option  value="<%= tipo.getIdTipo()%>" ><%= tipo.getDescTipo() %></option>
   		<%} %> 
 	</select>
 	</div>

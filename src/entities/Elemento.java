@@ -15,9 +15,6 @@ public class Elemento implements Serializable {
 	CtrlABMCTipoElemento ctrl;
 	private ArrayList<Reserva> reservas;
 	private static int ult = 0;
-	//PROBADO
-	//NUEVO 
-	//REPOSITORIO
 	
 	public ArrayList<Reserva> getReservas() {
 		return reservas;
@@ -48,7 +45,6 @@ public class Elemento implements Serializable {
 	}
 	
 	public Elemento(String desc, int cap,String ubi,TipoElemento tip  ){
-		this.setIdElemento();
 		this.setDescripcion(desc);
 		this.setCapacidad(cap);
 		this.setUbicacion(ubi);
@@ -71,10 +67,7 @@ public class Elemento implements Serializable {
 	public int getIdElemento() {
 		return idElemento;
 	}
-	public void setIdElemento() {
-		ult = ult + 1;
-		this.idElemento = ult;
-	}
+
 	public void setIdElemento(int i) {
 		this.idElemento = i;
 	}

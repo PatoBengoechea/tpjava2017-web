@@ -28,9 +28,9 @@ public class modificarElemento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int ide;
-		ide = Integer.parseInt(request.getParameter("idElemento").toString());
-		request.setAttribute("idElemento2", ide);
+		int ide = 1;
+		ide = Integer.parseInt(request.getParameter("idElem").toString());
+		request.setAttribute("idE2", ide);
 		request.getRequestDispatcher("WEB-INF/lib/editarElemento.jsp").forward(request, response);
 	}
 
