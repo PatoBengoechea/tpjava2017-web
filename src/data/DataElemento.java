@@ -2,6 +2,8 @@ package data;
 
 import entities.TipoElemento;
 import entities.Elemento;
+import entities.Persona;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -197,5 +199,30 @@ public class DataElemento {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public void update(Elemento el) {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn()
+					.prepareStatement(
+					"update Elemento set ubicacion = ?, descripcion = ?, capacidad = ?, idtipo=? idElemento = ?");
+			stmt.setString(1, el.getUbicacion());
+			stmt.setString(2, el.getDescripcion());	
+			stmt.setInt(3, el.getCapacidad());
+			stmt.setInt(4, el.getTipo().getIdTipo());
+			stmt.executeUpdate();
+			}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
 	}
 }

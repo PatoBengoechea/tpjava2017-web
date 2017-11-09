@@ -33,6 +33,16 @@ public class CtrlABMCElemento {
 	{
 		de.delete(e);
 	}
+	
+	public Elemento getByID(Elemento el)
+	{
+		return de.getById(el);
+	}
+	
+	public void update(Elemento el)
+	{
+		de.update(el);
+	}
 }
 	
 	
