@@ -1,3 +1,8 @@
+<%@page import="entities.Elemento"%>
+<%@page import="controlers.CtrlABMCElemento"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="controlers.CtrlABMCTipoElemento"%>
+<%@page import="entities.TipoElemento"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,10 +16,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
-<form role="form">
+<form class="form-signin" name="signin" action="realizaActualizaReserva" method="post">
   <div class="form-group">
     <label for="id-reserva">ID</label>
     <input type="id-reserva" class="form-control" id="id-reserva" readonly="true" style="width:50px;height:30px">
@@ -28,15 +30,40 @@
     <label for="fecha-fin">Fecha de Fin de Rerserva</label>
     <input type="fecha-fin" class="form-control" id="Fecha de Fin de Reserva" style="width:100px;height:35px" >
   </div>
-   <div class="dropdown" >
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="bottom:30px" >Tipo de Recinto<span class="caret"></span></button>
-	</div> 
-	 <div class="dropdown" style="margin-bottom: 30px; margin-top: 30px;">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Recinto
-  <span class="caret"></span></button>
-	</div> 
-  <button type="submit" class="btn btn-default">Reservar</button>
+	<div>
+	<%	
+		String idSeleccionado = String.valueOf(request.getAttribute("idSel"));
+		ArrayList<TipoElemento> listatipos = new ArrayList<TipoElemento>();
+		CtrlABMCTipoElemento controladorTE = new CtrlABMCTipoElemento();
+		if(idSeleccionado.equals("0"))
+		{	
+	    listatipos = controladorTE.getAll();   
+	 %>
+	<select name="tipoElemento" >
+	<%for(TipoElemento tipo : listatipos){ %>
+  		<option  value="<%= tipo.getIdTipo()%>" ><%= tipo.getDescTipo() %></option> 
+	<%}} %>	
+	</select>	
+	</div>
+	<div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
+	</div>
+	<div>
+	<%	
+		if(!(idSeleccionado).equals("0")){
+		CtrlABMCElemento controladorE = new CtrlABMCElemento();
+		ArrayList<Elemento> listaelemento = new ArrayList<Elemento>();
+		TipoElemento tipo = new TipoElemento();
+		tipo.setIdTipo(Integer.parseInt(idSeleccionado));
+	    listaelemento = controladorE.getByTipo(tipo);    
+	 %>
+	<p>Elemento:
+	<select name="elemento">
+	<%for(Elemento el : listaelemento){ %>
+  		<option  value="<%= el.getIdElemento()%>" ><%= el.getDescripcion() %></option>
+  		<%}} %> 
+	</select>	
+	</div>
 </form>
-
 </body>
 </html>

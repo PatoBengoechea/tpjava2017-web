@@ -45,7 +45,6 @@ public class realizaAltaTipo extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */

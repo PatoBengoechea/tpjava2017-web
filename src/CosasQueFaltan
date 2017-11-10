@@ -1,9 +1,14 @@
 ELEMENTO
-	*Probar el modifica elemento se me crasheo el tomcat
-	(en caso de no andar cambiar la sentencia nro 35 de realizaModiElemento 
-	que seria 
-	"el.setIdElemento(Integer.parseInt((String)request.getAttribute("idehi")));"
-	por el.setIdElemento(12) y seleccionar el nro 12
+	No anda editar elemento
 	
-	*Nos faltaria mostrarle todas las reservas de esa persona con la sesion 
-	 para que pueda eliminar alguna
+Tipo Elemento
+	Eliminar con Try Catch
+	
+ Reservar incompleto
+ 	Completar
+ 	
+ Mostrar Reservas
+ 	11 puntos
+ 	
+ Personas
+ 	8

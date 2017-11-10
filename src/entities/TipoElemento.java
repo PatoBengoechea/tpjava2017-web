@@ -17,7 +17,8 @@ public class TipoElemento implements Serializable {
 		this.cantdiasMax = cant;
 	}
 
-	public TipoElemento(){}
+	public TipoElemento(){
+	}
 	
 	public TipoElemento(int idtipo){
 		this.idTipo = idtipo;

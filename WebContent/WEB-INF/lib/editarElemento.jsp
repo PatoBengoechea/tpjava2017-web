@@ -12,12 +12,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<form name="signin" action="realizaModiElemento" method="post">
 <% CtrlABMCElemento ctrl = new CtrlABMCElemento();
 	Elemento el = new Elemento();
 	int id = Integer.parseInt(request.getAttribute("idE2").toString());
 	el.setIdElemento(id);
 	el = ctrl.getByID(el); %>
-<form name="signin" action="realizaModiElemento" method="post">
 	<label>ID:</label><input type="text" name="idtxt" disabled="disabled" value=<%=el.getIdElemento()%>>
 	<input type="hidden" name="idehi" value=<%=id%>>
 	<div><label>Ubicacion</label><input type="text" name="ubicaciontxt" value=<%=el.getUbicacion()%>></div>
@@ -37,7 +38,7 @@
 		<option  value="<%= tipo.getIdTipo()%>" selected><%= tipo.getDescTipo() %></option>
 		<%}
 		else{%>
-  		<option  value="<%= tipo.getIdTipo()%>" ><%= tipo.getDescTipo() %></option>
+  		<option  value="<%= tipo.getIdTipo()%>"><%= tipo.getDescTipo() %></option>
   		<%}} %> 
 	</select>
 	</div>
