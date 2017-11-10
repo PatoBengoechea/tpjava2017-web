@@ -51,17 +51,19 @@ public class Start extends HttpServlet {
 			
 			Persona pers =ctrl.buscarUsuario(per);
 			
-//			if(pers.getUsuario().equals("vacio"))
-//			{
-//				PrintWriter out = response.getWriter(); 
-//				response.setContentType("text/html"); 
-//				out.println("<script> alert(USUARIO/PASSWORD INVALIDOS); </script>"); 
-//			}
-//			else{
+			if(pers.getUsuario().equals("vacio"))
+			{
+				request.getRequestDispatcher("login.html").forward(request, response);
+				//PrintWriter out = response.getWriter(); 
+				//response.setContentType("text/html"); 
+				//out.println("<script> alert(USUARIO/PASSWORD INVALIDOS); </script>"); 
+			}
+			else{
 			request.getSession().setAttribute("user", pers);
+			request.getSession().setAttribute("idPersona", pers.getIdPersona());
 			request.getRequestDispatcher("WEB-INF/lib/Menu.jsp").forward(request, response);
 			//response.getWriter().append(user).append(" ").append(pass);
-//			}		
+		}		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
