@@ -239,19 +239,17 @@ import entities.TipoElemento;
 			
 			public void delete(Reserva r) {
 				PreparedStatement stmt=null;
-				ResultSet rs = null;
 				try {
 					stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-							"delete from Reserva where id = ?");
+							"delete from Reserva where idReserva = ?");
 					stmt.setInt(1, r.getIdReserva() );
-					rs=stmt.executeQuery();
+					stmt.executeUpdate();
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} 
 				
 				try {
-					if(rs!=null)rs.close();
 					if(stmt!=null)stmt.close();
 					FactoryConexion.getInstancia().releaseConn();
 				} catch (SQLException e) {

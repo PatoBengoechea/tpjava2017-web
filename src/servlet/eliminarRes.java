@@ -40,7 +40,7 @@ public class eliminarRes extends HttpServlet {
 		// TODO Auto-generated method stub
 		Reserva res = new Reserva();
 		CtrlABMCReserva ctrl = new CtrlABMCReserva();
-		int id = Integer.parseInt(request.getAttribute("idRes").toString());
+		int id = Integer.parseInt(request.getParameter("idRes").toString());
 		res.setIdReserva(id);
 		ctrl.delete(res);
 		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
