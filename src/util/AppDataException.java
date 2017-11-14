@@ -1,6 +1,6 @@
 package util;
 
-public class AppDataException {
+public class AppDataException extends Exception {
 	private Throwable innerException;
 	private String message;
 	

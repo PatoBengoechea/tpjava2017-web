@@ -52,8 +52,14 @@ public class Start extends HttpServlet {
 			Persona pers =ctrl.buscarUsuario(per);
 			
 			if(pers.getUsuario().equals("vacio"))
-			{
-				request.getRequestDispatcher("login.html").forward(request, response);
+			{	
+				PrintWriter out = response.getWriter(); 
+				 out.println("<script type=\"text/javascript\">");
+				 out.println("alert('Usuario o Contraseña incorrecto');");
+				 out.println("location='login.html';");
+				 out.println("</script>");
+				
+				//request.getRequestDispatcher("login.html").forward(request, response);
 				//PrintWriter out = response.getWriter(); 
 				//response.setContentType("text/html"); 
 				//out.println("<script> alert(USUARIO/PASSWORD INVALIDOS); </script>"); 

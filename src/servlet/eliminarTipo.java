@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import controlers.CtrlABMCPersona;
 import controlers.CtrlABMCTipoElemento;
 import entities.TipoElemento;
+import util.AppDataException;
 
 /**
  * Servlet implementation class eliminarTipo
@@ -38,12 +41,23 @@ public class eliminarTipo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CtrlABMCTipoElemento ctrlPer = new CtrlABMCTipoElemento();
-		TipoElemento tipo = new TipoElemento();
-		int id =  Integer.parseInt((String)request.getParameter("idTipo"));
-		tipo.setIdTipo(id);
-		ctrlPer.eliminoTip(tipo);
-		request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
+		try {
+			CtrlABMCTipoElemento ctrlPer = new CtrlABMCTipoElemento();
+			TipoElemento tipo = new TipoElemento();
+			int id =  Integer.parseInt((String)request.getParameter("idTipo"));
+			tipo.setIdTipo(id);
+			ctrlPer.eliminoTip(tipo);
+			request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
+			}
+		catch(Exception e)
+		{
+			PrintWriter out = response.getWriter(); 
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage() +"');");
+		    out.println("</script>");
+		    response.sendRedirect("WEB-INF/lib/ABMTipoElemento.jsp");
+		}
+		
 	}
 
 }

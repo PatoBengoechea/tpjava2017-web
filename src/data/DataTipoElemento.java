@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import entities.Persona;
 import entities.TipoElemento;
+import util.AppDataException;
 
 public class DataTipoElemento {
 	
@@ -113,7 +114,7 @@ public class DataTipoElemento {
 		}
 	
 	}
-	public void delete(TipoElemento tipo) {
+	public void delete(TipoElemento tipo) throws Exception {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -122,8 +123,9 @@ public class DataTipoElemento {
 			stmt.setInt(1, tipo.getIdTipo());
 			stmt.executeUpdate();			
 			}
-		catch (SQLException e) {
-			e.printStackTrace();
+		catch (Exception e) {
+			AppDataException ape = new AppDataException(e, e.getMessage());
+			throw ape;
 		}
 		try {
 			if(stmt!=null)stmt.close();

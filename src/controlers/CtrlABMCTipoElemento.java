@@ -28,7 +28,7 @@ public class CtrlABMCTipoElemento {
 		datatipo.update(tipo);		
 	}
 
-	public void eliminoTip(TipoElemento tipo) {
+	public void eliminoTip(TipoElemento tipo) throws Exception {
 		datatipo.delete(tipo);
 	}
 	public TipoElemento getByID(TipoElemento te)
