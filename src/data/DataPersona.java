@@ -119,7 +119,7 @@ public class DataPersona {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into Persona(dni, nombre, apellido, habilitado, usuario, password) values (?,?,?,?, ?, ?)",
+					"insert into persona(dni, nombre, apellido, habilitado, usuario, password) values (?,?,?,?, ?, ?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, p.getDni());
@@ -145,7 +145,7 @@ public class DataPersona {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"delete from Persona where idPersona = ?");
+					"delete from persona where idPersona = ?");
 			stmt.setInt(1, idper);
 		    stmt.executeUpdate();
 			

@@ -15,7 +15,7 @@ public class DataElemento {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into Elemento(ubicacion, descripcion, capacidad, idTipo) values (?,?,?,?)",
+					"insert into elemento(ubicacion, descripcion, capacidad, idTipo) values (?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, el.getUbicacion());
@@ -40,7 +40,7 @@ public class DataElemento {
 		ArrayList<Elemento> elementos = new ArrayList<Elemento>();
 		try {
 			stmt =  FactoryConexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select * from Elemento");
+			rs = stmt.executeQuery("select * from elemento");
 			if(rs!=null){
 				while(rs.next()){
 					Elemento t = new Elemento();
@@ -107,7 +107,7 @@ public class DataElemento {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement
-			("select idElemento, descripcion, ubicacion, capacidad, idTipo from Elemento where idElemento = ?");
+			("select idElemento, descripcion, ubicacion, capacidad, idTipo from elemento where idElemento = ?");
 			stmt.setInt(1, ele.getIdElemento());
 			rs = stmt.executeQuery();
 			if(rs!=null && rs.next()){
@@ -185,7 +185,7 @@ public class DataElemento {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"delete from Elemento where idElemento = ?");
+					"delete from elemento where idElemento = ?");
 			stmt.setInt(1, el.getIdElemento());
 		    stmt.executeUpdate();
 			

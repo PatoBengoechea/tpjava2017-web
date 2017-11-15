@@ -19,7 +19,7 @@ import entities.TipoElemento;
 			try {
 				stmt=FactoryConexion.getInstancia().getConn()
 						.prepareStatement(
-						"insert into Reserva(idPersona, fechaInicio, fechaFin, idElemento) values (?,?,?,?)",
+						"insert into reserva(idPersona, fechaInicio, fechaFin, idElemento) values (?,?,?,?)",
 						PreparedStatement.RETURN_GENERATED_KEYS
 						);
 				
@@ -104,7 +104,7 @@ import entities.TipoElemento;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 				try {
 					stmt =  FactoryConexion.getInstancia().getConn().createStatement();
-					rs = stmt.executeQuery("select r.idReserva, p.idPersona,p.nombre, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from Reserva r left join Persona p on r.idPersona = p.idPersona left join Elemento e on r.idElemento = e.idElemento left join TipoElemento te on e.idTipo = te.idTipo where r.fechaInicio >= NOW()");
+					rs = stmt.executeQuery("select r.idReserva, p.idPersona,p.nombre, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from reserva r left join persona p on r.idPersona = p.idPersona left join elemento e on r.idElemento = e.idElemento left join tipoelemento te on e.idTipo = te.idTipo where r.fechaInicio >= NOW()");
 					if(rs!=null){
 						while(rs.next()){
 							Reserva r = new Reserva();
@@ -189,7 +189,7 @@ import entities.TipoElemento;
 				try {
 					
 					stmt=FactoryConexion.getInstancia().getConn().prepareStatement
-							("select r.idReserva, p.nombre, p.idPersona, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from Reserva r left join Persona p on r.idPersona = p.idPersona left join Elemento e on e.idElemento=? left join TipoElemento te on e.idTipo = te.idTipo");
+							("select r.idReserva, p.nombre, p.idPersona, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from reserva r left join persona p on r.idPersona = p.idPersona left join elemento e on e.idElemento=? left join tipoelemento te on e.idTipo = te.idTipo");
 						stmt.setInt(1, el.getIdElemento());	
 						rs = stmt.executeQuery();
 					if(rs!=null){
@@ -241,7 +241,7 @@ import entities.TipoElemento;
 				PreparedStatement stmt=null;
 				try {
 					stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-							"delete from Reserva where idReserva = ?");
+							"delete from reserva where idReserva = ?");
 					stmt.setInt(1, r.getIdReserva() );
 					stmt.executeUpdate();
 					
@@ -262,7 +262,7 @@ import entities.TipoElemento;
 				ResultSet rs = null;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 				try {
-					stmt =  FactoryConexion.getInstancia().getConn().prepareStatement("select r.idReserva, p.idPersona,p.nombre, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from Reserva r left join Persona p on r.idPersona = p.idPersona left join Elemento e on r.idElemento = e.idElemento left join TipoElemento te on e.idTipo = te.idTipo where p.idPersona = ? and r.fechaInicio>= NOW()");
+					stmt =  FactoryConexion.getInstancia().getConn().prepareStatement("select r.idReserva, p.idPersona,p.nombre, p.apellido, p.dni, p.habilitado, p.usuario, p.password, r.fechaInicio, r.fechaFin, e.idElemento, e.capacidad, e.ubicacion, e.descripcion, te.descripcion, te.idTipo from reserva r left join persona p on r.idPersona = p.idPersona left join elemento e on r.idElemento = e.idElemento left join tipoelemento te on e.idTipo = te.idTipo where p.idPersona = ? and r.fechaInicio>= NOW()");
 					stmt.setInt(1, per.getIdPersona());
 					rs=stmt.executeQuery();
 					if(rs!=null){
