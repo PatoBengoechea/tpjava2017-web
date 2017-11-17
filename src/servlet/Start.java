@@ -67,9 +67,13 @@ public class Start extends HttpServlet {
 			else{
 			request.getSession().setAttribute("user", pers);
 			request.getSession().setAttribute("idPersona", pers.getIdPersona());
-			request.getRequestDispatcher("WEB-INF/lib/Menu.jsp").forward(request, response);
-			//response.getWriter().append(user).append(" ").append(pass);
-		}		
+			if(pers.isAdmin()){
+			request.getRequestDispatcher("WEB-INF/lib/MenuAdmin.jsp").forward(request, response);	
+			}
+			else{
+			request.getRequestDispatcher("WEB-INF/lib/MenuUser.jsp").forward(request, response);
+			}
+			}		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

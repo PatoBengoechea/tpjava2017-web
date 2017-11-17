@@ -12,6 +12,11 @@
 	<p>Apellido<input type="text" name="apellidotxt"></p>
 	<p>DNI<input type="text" name="dnitxt"></p>
 	<p>Habilitado <input type="checkbox" name="habchecbox"></p>
+	Tipo Usuario: <select name="tipouser" >
+	<option  value="1" >User</option>
+	<option  value="2" >Admin</option>
+	<option  value="3" >Encargado</option>
+	</select>
 	<p>Usuario<input type="text" name="usuariotxt"></p>
 	<p>Password<input type="text" name="passwordtxt"></p>
 	<div>

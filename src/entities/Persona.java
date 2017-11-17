@@ -11,8 +11,9 @@ public class Persona implements Serializable {
 	private int idPersona;
 	private String usuario;
 	private String password;
-	//private String tipoAcceso;
-	
+	private boolean encargado;
+	private boolean admin;
+
 
 	public boolean isHabilitado() {
 		return habilitado;
@@ -22,6 +23,21 @@ public class Persona implements Serializable {
 		this.habilitado = habilitado;
 	}
 
+	public boolean isEncargado() {
+		return encargado;
+	}
+
+	public void setEncargado(boolean habilitado) {
+		this.encargado = habilitado;
+	}
+	
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean habilitado) {
+		this.admin = habilitado;
+	}
 	
 	public boolean estaVacio()
 		{

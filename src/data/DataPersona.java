@@ -23,6 +23,8 @@ public class DataPersona {
 					p.setHabilitado(rs.getBoolean("habilitado"));
 					p.setUsuario(rs.getString("usuario"));
 					p.setPassword(rs.getString("password"));
+					p.setEncargado(rs.getBoolean("encargado"));
+					p.setAdmin(rs.getBoolean("admin"));
 					Personas.add(p);
 				}
 		} 
@@ -119,7 +121,7 @@ public class DataPersona {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into persona(dni, nombre, apellido, habilitado, usuario, password) values (?,?,?,?, ?, ?)",
+					"insert into persona(dni, nombre, apellido, habilitado, usuario, password, encargado, admin) values (?,?,?,?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS
 					);
 			stmt.setString(1, p.getDni());
@@ -128,6 +130,8 @@ public class DataPersona {
 			stmt.setBoolean(4, p.isHabilitado());
 			stmt.setString(5, p.getUsuario());
 			stmt.setString(6, p.getPassword());
+			stmt.setBoolean(7, p.isEncargado());
+			stmt.setBoolean(8, p.isAdmin());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

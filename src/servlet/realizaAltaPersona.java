@@ -36,14 +36,35 @@ public class realizaAltaPersona extends HttpServlet {
 			String dni = request.getParameter("dnitxt").toString();
 			String nombre = request.getParameter("nombretxt").toString();
 			String apellido = request.getParameter("apellidotxt").toString();
-			boolean hab = true;
+			boolean hab;
+			if(request.getParameter("habchecbox") != null){
+			hab = Boolean.parseBoolean(request.getParameter("habchecbox").toString());}
+			else{
+			hab = false;
+			}
 			String usuario = request.getParameter("usuariotxt").toString();
 			String password = request.getParameter("passwordtxt").toString();
 			Persona per = new Persona(nombre, apellido, dni, usuario, password);
 			per.setHabilitado(hab);
+			String Idtipo = ((String)request.getParameter("tipouser"));
+			boolean adm;
+			boolean enc;
+			if(Idtipo.equals("1")){
+				adm = false;
+				enc = false;
+			}
+			else if (Idtipo.equals("2")){
+				adm = true;
+				enc = false;
+			}
+			else{
+				adm = false;
+				enc = true;
+			}
+			per.setAdmin(adm);
+			per.setEncargado(enc);
 			tiposs.addPersona(per);
 			request.getRequestDispatcher("WEB-INF/lib/ABMPersona.jsp").forward(request, response);	
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
