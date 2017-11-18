@@ -1,14 +1,13 @@
-ELEMENTO
-	No anda editar elemento
+ELEMENTO Completo
+Tipo Elemento Eliminar con Try Catch
+Reservar todo menos recuperar la persona que realiza la reserva, se la hago siempre a user user
 	
-Tipo Elemento
-	Eliminar con Try Catch
-	
- Reservar incompleto
- 	Completar
- 	
- Mostrar Reservas
- 	11 puntos
- 	
  Personas
- 	8
+ todo perfecto, menos recuperar el checkbox y poner si esta habilitado o no
+ no cambia si selecciona una u otro tipo de persona
+ 	
+ Cosas que agregue:
+ personas en la base de datos un user y un admin:
+ user:user password:user
+ user:admin password:admin
+ validacion y 2 menu dependiendo de que elige

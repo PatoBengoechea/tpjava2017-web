@@ -17,52 +17,65 @@
 </head>
 <body>
 <form class="form-signin" name="signin" action="realizaActualizaReserva" method="post">
-  <div class="form-group">
-    <label for="id-reserva">ID</label>
-    <input type="id-reserva" class="form-control" id="id-reserva" readonly="true" style="width:50px;height:30px">
-  </div>
-  <div class="form-group">
-    <label for="fecha-inic">Fecha de Inicio</label>
-    <input type="fecha-inic" class="form-control" id="Fecha de Inicio" style="width:100px;
-    height:30px" >
-  </div>
-  <div class="form-group">
-    <label for="fecha-fin">Fecha de Fin de Rerserva</label>
-    <input type="fecha-fin" class="form-control" id="Fecha de Fin de Reserva" style="width:100px;height:35px" >
-  </div>
 	<div>
 	<%	
 		String idSeleccionado = String.valueOf(request.getAttribute("idSel"));
 		ArrayList<TipoElemento> listatipos = new ArrayList<TipoElemento>();
 		CtrlABMCTipoElemento controladorTE = new CtrlABMCTipoElemento();
-		if(idSeleccionado.equals("0"))
-		{	
-	    listatipos = controladorTE.getAll();   
-	 %>
-	<select name="tipoElemento" >
-	<%for(TipoElemento tipo : listatipos){ %>
-  		<option  value="<%= tipo.getIdTipo()%>" ><%= tipo.getDescTipo() %></option> 
-	<%}} %>	
-	</select>	
-	</div>
-	<div>
-	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
-	</div>
-	<div>
-	<%	
-		if(!(idSeleccionado).equals("0")){
 		CtrlABMCElemento controladorE = new CtrlABMCElemento();
 		ArrayList<Elemento> listaelemento = new ArrayList<Elemento>();
-		TipoElemento tipo = new TipoElemento();
-		tipo.setIdTipo(Integer.parseInt(idSeleccionado));
-	    listaelemento = controladorE.getByTipo(tipo);    
-	 %>
-	<p>Elemento:
-	<select name="elemento">
-	<%for(Elemento el : listaelemento){ %>
-  		<option  value="<%= el.getIdElemento()%>" ><%= el.getDescripcion() %></option>
-  		<%}} %> 
+		TipoElemento tipo2 = new TipoElemento();
+	    listatipos = controladorTE.getAll();   %>
+	    Tipo Elemento
+		<select name="tipoElemento" >
+			<% if(idSeleccionado.equals("0"))
+				{	
+					for(TipoElemento tipo : listatipos){ %>
+  					<option  value="<%= tipo.getIdTipo()%>" ><%= tipo.getDescTipo() %></option> 
+					<%}			
+				}
+			else{
+			listatipos = controladorTE.getAll();   %>
+			<%for(TipoElemento tipo : listatipos){
+				if(idSeleccionado.equals(String.valueOf(tipo.getIdTipo()))){%>
+					<option  value="<%= tipo.getIdTipo()%>" ><%= tipo.getDescTipo() %></option>
+				<%}
+				else{%>	
+	  				<option  value="<%= tipo.getIdTipo()%>" selected="selected" ><%= tipo.getDescTipo() %></option> 
+				<%}
+			}%>	
+		</select>	
+		<%}%>
+	</div>
+	<div>
+		<%	
+		if(!(idSeleccionado).equals("0")){
+				tipo2.setIdTipo(1);
+	   			 listaelemento = controladorE.getByTipo(tipo2);%>
+		<label>Elemento:</label>
+		<input type="hidden" name="selecciono" value="1">
+		<select name="elemento">
+		<%for(Elemento el : listaelemento){ %>
+  			<option  value="<%= el.getIdElemento()%>"><%= el.getDescripcion() %></option>
+  		<%}
+		}
+		else{%>
+		<label>Seleccione algun tipo por favor y aprete confirmar</label>
+		<%}%>
 	</select>	
+	</div>
+	<%if(!(idSeleccionado).equals("0")){%>
+	<div class="form-group">
+    <label for="fecha-inic">Fecha de Inicio</label>
+    <input  type="text" class="form-control" name="fechaini" style="width:300px; height:35px" >
+  	</div>
+  	<div class="form-group">
+    <label for="fecha-fin">Fecha de Fin de Rerserva</label>
+    <input type="text" class="form-control" name="fechafin" style="width:300px;height:35px" >
+  	</div>
+	<%} %>
+	<div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
 	</div>
 </form>
 </body>
