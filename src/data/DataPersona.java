@@ -84,7 +84,7 @@ public class DataPersona {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idPersona, nombre, apellido, dni, habilitado, usuario, password from persona where idPersona = ? ");
+					"select idPersona, nombre, apellido, dni, habilitado, usuario, password, encargado, admin from persona where idPersona = ? ");
 			stmt.setInt(1, per.getIdPersona());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){
@@ -96,6 +96,8 @@ public class DataPersona {
 					p.setHabilitado(rs.getBoolean("habilitado"));
 					p.setUsuario(rs.getString("usuario"));
 					p.setPassword(rs.getString("password"));
+					p.setEncargado(rs.getBoolean("encargado"));
+					p.setAdmin(rs.getBoolean("admin"));
 					return p;
 			}
 		} catch (SQLException e) {
@@ -170,13 +172,15 @@ public class DataPersona {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"update persona set nombre = ?, apellido = ?, habilitado = ?, usuario=?, password=? where idPersona = ?");
+					"update persona set nombre = ?, apellido = ?, habilitado = ?, usuario=?, password=?, encargado=?, admin=?  where idPersona = ?");
 			stmt.setString(1, per.getNombre());
 			stmt.setString(2, per.getApellido());	
 			stmt.setBoolean(3, per.isHabilitado());
 			stmt.setString(4, per.getUsuario());
 			stmt.setString(5, per.getPassword());
-			stmt.setInt(6, per.getIdPersona());
+			stmt.setBoolean(6, per.isEncargado());
+			stmt.setBoolean(7, per.isAdmin());
+			stmt.setInt(8, per.getIdPersona());
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {

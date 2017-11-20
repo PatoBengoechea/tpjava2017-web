@@ -36,12 +36,9 @@ public class realizaAltaPersona extends HttpServlet {
 			String dni = request.getParameter("dnitxt").toString();
 			String nombre = request.getParameter("nombretxt").toString();
 			String apellido = request.getParameter("apellidotxt").toString();
-			boolean hab;
+			boolean hab = false;
 			if(request.getParameter("habchecbox") != null){
-			hab = Boolean.parseBoolean(request.getParameter("habchecbox").toString());}
-			else{
-			hab = false;
-			}
+			hab = true;}
 			String usuario = request.getParameter("usuariotxt").toString();
 			String password = request.getParameter("passwordtxt").toString();
 			Persona per = new Persona(nombre, apellido, dni, usuario, password);

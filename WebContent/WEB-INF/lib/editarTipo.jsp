@@ -26,6 +26,12 @@
 	<div>
 	<p>Cantidad Dias Max</p><input type="text" name="canttxt" value= <%=tipo.getCantdiasMax() %>>
 	</div>
+	<% if(tipo.isSoloEnc()){ %>
+	<p>Tipo Solicitud: SOLO ENCARGADO <input type="checkbox" name="soloenc" checked="checked"> (Check para solo poder reservado por un encargado)</p>
+	<% }%>
+	<% if(!(tipo.isSoloEnc())){%>
+	<p>Tipo Solicitud: SOLO ENCARGADO <input type="checkbox" name="soloenc"> (Check para solo poder reservado por un encargado)</p>
+	<% }%>
 	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
 	</div>

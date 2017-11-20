@@ -8,7 +8,25 @@ public class TipoElemento implements Serializable {
 	private String descTipo;
 	private int cantdiasMax;
 	private static int ult;
+	private boolean soloEnc;
 	
+	public boolean isSoloEnc(){
+		return soloEnc;
+	}
+	
+	public String getSoloEnc(){
+		if(soloEnc){
+			return "Solo Encargado";
+		}
+		else{
+			return "Usuario/Encargado";
+		}
+	}
+
+	public void setSoloEnc(boolean soloEnc) {
+		this.soloEnc = soloEnc;
+	}
+
 	public int getCantdiasMax() {
 		return cantdiasMax;
 	}

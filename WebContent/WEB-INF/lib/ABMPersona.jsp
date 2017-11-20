@@ -29,6 +29,7 @@
         <th>HABILITADO</th>
         <th>USUARIO</th>
         <th>PASSWORD</th>
+        <th>TIPO USER</th>
         <th>EDITAR</th>
         <th>ELIMINAR</th>
       </tr>
@@ -48,6 +49,7 @@
         <td><%= tipo.isHabilitado() %></td>
         <td><%= tipo.getUsuario()%>
         <td><%= tipo.getPassword()%>
+        <td><%= tipo.getTipoUsuario() %>
         <td>
 		<form class="form-signin" action ="editarPer" method="post">
 			<input type="hidden" name="idPer" value="<%= tipo.getIdPersonaString() %>">

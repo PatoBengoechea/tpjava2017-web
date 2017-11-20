@@ -26,6 +26,18 @@ public class Persona implements Serializable {
 	public boolean isEncargado() {
 		return encargado;
 	}
+	
+	public String getTipoUsuario(){
+		if(encargado){
+			return "Encargado";
+		}
+		else if (admin) {
+			return "Admin";
+		}
+		else{
+			return "User";
+		}
+	}
 
 	public void setEncargado(boolean habilitado) {
 		this.encargado = habilitado;

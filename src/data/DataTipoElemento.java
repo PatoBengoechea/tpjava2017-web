@@ -25,6 +25,7 @@ public class DataTipoElemento {
 					te.setIdTipo(rs.getInt("idTipo"));
 					te.setDescTipo(rs.getString("descripcion"));
 					te.setCantdiasMax(rs.getInt("cantDiasMax"));
+					te.setSoloEnc(rs.getBoolean("soloenc"));
 					tipoelementos.add(te);
 				}
 			} 
@@ -48,13 +49,14 @@ public class DataTipoElemento {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idTipo, descripcion, cantDiasMax from tipoelemento where idTipo = ?");
+					"select idTipo, descripcion, cantDiasMax, soloenc from tipoelemento where idTipo = ?");
 			stmt.setInt(1, t.getIdTipo());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){	
 				tipoelemento.setIdTipo(rs.getInt("idTipo"));
 				tipoelemento.setDescTipo(rs.getString("descripcion"));
 				tipoelemento.setCantdiasMax(rs.getInt("cantDiasMax"));
+				tipoelemento.setSoloEnc(rs.getBoolean("soloenc"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,10 +77,11 @@ public class DataTipoElemento {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into tipoelemento(descripcion, cantDiasMax) values (?,?)"
+					"insert into tipoelemento(descripcion, cantDiasMax, soloenc) values (?,?,?)"
 					);
 			stmt.setString(1, tipoe.getDescTipo().toString());
 			stmt.setInt(2, tipoe.getCantdiasMax());
+			stmt.setBoolean(3, tipoe.isSoloEnc());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,10 +100,11 @@ public class DataTipoElemento {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"update tipoelemento set descripcion = ?, cantDiasMax = ? where idTipo = ?");
+					"update tipoelemento set descripcion = ?, cantDiasMax = ?, soloenc= ? where idTipo = ?");
 			stmt.setString(1, tipo.getDescTipo());
-			stmt.setInt(2, tipo.getCantdiasMax());	
-			stmt.setInt(3, tipo.getIdTipo());
+			stmt.setInt(2, tipo.getCantdiasMax());
+			stmt.setBoolean(3, tipo.isSoloEnc());
+			stmt.setInt(4, tipo.getIdTipo());
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {

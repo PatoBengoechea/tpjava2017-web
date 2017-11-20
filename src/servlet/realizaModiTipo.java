@@ -44,9 +44,14 @@ public class realizaModiTipo extends HttpServlet {
 		String cant = request.getParameter("canttxt").toString();
 		int cantidad = Integer.parseInt(cant);
 		int idTipo = Integer.parseInt(id);
-		tipo.setIdTipo(idTipo);
+		boolean solo = false;
+		if(request.getParameter("soloenc")!=null){
+		solo = true;
+		}
 		tipo.setDescTipo(desc);
 		tipo.setCantdiasMax(cantidad);
+		tipo.setSoloEnc(solo);
+		tipo.setIdTipo(idTipo);
 		tiposs.editar(tipo);
 		request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
 	}
