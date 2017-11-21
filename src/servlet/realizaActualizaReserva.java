@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.Session;
+
 import controlers.CtrlABMCElemento;
 import controlers.CtrlABMCPersona;
 import controlers.CtrlABMCReserva;
@@ -56,12 +58,12 @@ public class realizaActualizaReserva extends HttpServlet {
 	    String fechafin = request.getParameter("fechafin").toString();
 	    Reserva r = new Reserva();
 	    Elemento e = new Elemento();
-	    Persona p = new Persona();
-	    p.setIdPersona(17);
+	    Persona p = (Persona)request.getSession().getAttribute("user");
+	    p.setIdPersona(p.getIdPersona());
 		String idElem = request.getParameter("elemento").toString();
 		e.setIdElemento(idElem);
 		r.setElemento(controladorElemento.buscarElemento(e));
-		r.setPersona(controladorPersona.buscarPersonaID(p));
+		r.setPersona(p);
 		Date fInicio = Date.valueOf(fechaini);
 		Date fFin = Date.valueOf(fechafin);
 		r.setFechaInicio(fInicio);

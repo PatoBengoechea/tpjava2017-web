@@ -12,6 +12,7 @@ import util.AppDataException;
 
 public class DataTipoElemento {
 	
+
 	public ArrayList<TipoElemento> getAll(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -137,5 +138,36 @@ public class DataTipoElemento {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<TipoElemento> getAllTipoUser() {
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<TipoElemento> tipoelementos = new ArrayList<TipoElemento>();
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select * from tipoelemento where soloenc = 0");
+			if(rs!=null){
+				while(rs.next()){
+					TipoElemento te = new TipoElemento();
+					te.setIdTipo(rs.getInt("idTipo"));
+					te.setDescTipo(rs.getString("descripcion"));
+					te.setCantdiasMax(rs.getInt("cantDiasMax"));
+					te.setSoloEnc(rs.getBoolean("soloenc"));
+					tipoelementos.add(te);
+				}
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	return tipoelementos;
 	}
 }

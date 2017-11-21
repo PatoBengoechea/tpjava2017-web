@@ -23,7 +23,10 @@ public class CtrlABMCTipoElemento {
 	public ArrayList<TipoElemento> getAll(){
 		return datatipo.getAll();
 	}
-
+	
+	public ArrayList<TipoElemento> getAllTiposUser(){
+		return datatipo.getAllTipoUser();
+	}
 	public void editar(TipoElemento tipo) {
 		datatipo.update(tipo);		
 	}

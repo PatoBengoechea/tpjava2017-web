@@ -1,8 +1,10 @@
+
 <%@page import="entities.Elemento"%>
 <%@page import="controlers.CtrlABMCElemento"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="controlers.CtrlABMCTipoElemento"%>
 <%@page import="entities.TipoElemento"%>
+<%@page import="entities.Persona"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,12 +27,18 @@
 		CtrlABMCElemento controladorE = new CtrlABMCElemento();
 		ArrayList<Elemento> listaelemento = new ArrayList<Elemento>();
 		TipoElemento tipo2 = new TipoElemento();
-	    listatipos = controladorTE.getAll();   %>
+	    Persona per = (Persona)session.getAttribute("user");
+	    if(per.isEncargado() || per.isAdmin()){
+	     listatipos = controladorTE.getAll();
+	     }
+	     else{
+	    	 listatipos = controladorTE.getAllTiposUser();
+	     }%>
 	    Tipo Elemento
 		<select name="tipoElemento" >
 			<% if(idSeleccionado.equals("0"))
 				{	
-					for(TipoElemento tipo : listatipos){ %>
+					for(TipoElemento tipo : listatipos){ %>				
   					<option  value="<%= tipo.getIdTipo()%>" ><%= tipo.getDescTipo() %></option> 
 					<%}			
 				}
