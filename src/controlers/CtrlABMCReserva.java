@@ -1,5 +1,7 @@
 package controlers;
 
+import java.io.Console;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import data.DataReserva;
@@ -16,8 +18,32 @@ public class CtrlABMCReserva {
 	}
 	
 	
-	public void addReserva(Reserva r){
-		datar.add(r);
+	public void addReserva(Reserva r, int diasmaxres, int diasmaxanti){
+		Date fechaFin = r.getFechaFin();
+		Date fechaIni = r.getFechaInicio();
+		java.util.Date fechaHoy = new java.util.Date();
+		System.out.println(diasmaxres);
+		System.out.println(diasmaxanti);
+		int diasreserva =(int)((fechaFin.getTime()-fechaIni.getTime())/86400000);
+		System.out.println(diasreserva);
+		int diasanticipo =(int)((fechaIni.getTime()-fechaHoy.getTime())/86400000);
+		System.out.println(diasanticipo);
+
+		if(fechaIni.after(fechaFin) || fechaIni.before(fechaHoy)){
+			System.out.println("Ingrese nuevamente las fechas por fechas validas");
+		}
+		else{
+			if(diasmaxres >= diasreserva && diasmaxanti >= diasanticipo){
+				System.out.println("Correcto");
+				datar.add(r);
+			}
+			else if (diasmaxres < diasreserva){
+				System.out.println("sobre pasa los dias de reserva maximos");
+			}
+			else if (diasmaxanti < diasanticipo){
+				System.out.println("sobre pasa los dias de anticipacion");
+			}
+		}
 	}
 	
 	public ArrayList<Reserva> getAll()

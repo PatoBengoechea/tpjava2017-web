@@ -27,6 +27,7 @@
         <th>DESCRIPCION</th>
         <th>CANT DIAS MAX</th>
         <th>Tipo Solicitud</th>
+        <th>Dias MAX ANTI</th>
         <th>EDITAR</th>
         <th>ELIMINAR</th>
       </tr>
@@ -42,6 +43,7 @@
         <td><%= tipo.getDescTipo() %></td>
         <td><%= tipo.getCantdiasMax() %></td>
         <td><%= tipo.getSoloEnc()%>
+        <td><%= tipo.getDiasmaxanti() %>
         <td>
 		<form class="form-signin" action ="editarTipo" method="post">
 			<input type="hidden" name="idTip" value="<%= tipo.getIdTipo() %>">

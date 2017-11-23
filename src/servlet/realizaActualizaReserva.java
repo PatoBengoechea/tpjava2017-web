@@ -56,6 +56,8 @@ public class realizaActualizaReserva extends HttpServlet {
 	    CtrlABMCPersona controladorPersona = new CtrlABMCPersona();
 	    String fechaini = request.getParameter("fechaini").toString();
 	    String fechafin = request.getParameter("fechafin").toString();
+	    String diasanti = request.getParameter("diasanti").toString();
+	    String diasres = request.getParameter("diasmax").toString();
 	    Reserva r = new Reserva();
 	    Elemento e = new Elemento();
 	    Persona p = (Persona)request.getSession().getAttribute("user");
@@ -68,7 +70,9 @@ public class realizaActualizaReserva extends HttpServlet {
 		Date fFin = Date.valueOf(fechafin);
 		r.setFechaInicio(fInicio);
 		r.setFechaFin(fFin);
-		controlador.addReserva(r);
+		int danti = Integer.parseInt(diasanti);
+		int dres = Integer.parseInt(diasres);
+		controlador.addReserva(r,dres,danti);
 		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
 		}
 	}

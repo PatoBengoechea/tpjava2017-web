@@ -9,11 +9,20 @@ public class TipoElemento implements Serializable {
 	private int cantdiasMax;
 	private static int ult;
 	private boolean soloEnc;
+	private int diasmaxanti;
 	
 	public boolean isSoloEnc(){
 		return soloEnc;
 	}
 	
+	public int getDiasmaxanti() {
+		return diasmaxanti;
+	}
+
+	public void setDiasmaxanti(int diasmaxanti) {
+		this.diasmaxanti = diasmaxanti;
+	}
+
 	public String getSoloEnc(){
 		if(soloEnc){
 			return "Solo Encargado";

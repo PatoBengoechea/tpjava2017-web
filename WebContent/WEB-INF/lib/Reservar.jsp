@@ -52,27 +52,42 @@
 	  				<option  value="<%= tipo.getIdTipo()%>" selected="selected" ><%= tipo.getDescTipo() %></option> 
 				<%}
 			}%>	
-		</select>	
+			</select>
+			
 		<%}%>
 	</div>
 	<div>
 		<%	
 		if(!(idSeleccionado).equals("0")){
-				tipo2.setIdTipo(1);
-	   			 listaelemento = controladorE.getByTipo(tipo2);%>
-		<label>Elemento:</label>
-		<input type="hidden" name="selecciono" value="1">
-		<select name="elemento">
-		<%for(Elemento el : listaelemento){ %>
-  			<option  value="<%= el.getIdElemento()%>"><%= el.getDescripcion() %></option>
-  		<%}
-		}
+			int idsel = Integer.parseInt(idSeleccionado);
+			tipo2.setIdTipo(idsel);
+			tipo2 = controladorTE.getByID(tipo2);
+	   		listaelemento = controladorE.getByTipo(tipo2);%>
+			<label>Elemento:</label>
+				<%if(listaelemento == null){ %>
+					<label>No se pose ningun elemento de este tipo</label>
+				<%}else{ %>
+					<input type="hidden" name="selecciono" value=<%= idsel %>>
+					<select name="elemento">
+					<%for(Elemento el : listaelemento){ %>
+  						<option  value="<%= el.getIdElemento()%>"><%= el.getDescripcion() %></option>
+  					<%}
+					}
+			}
 		else{%>
-		<label>Seleccione algun tipo por favor y aprete confirmar</label>
+			<label>Seleccione algun tipo por favor y aprete confirmar</label>
 		<%}%>
 	</select>	
 	</div>
 	<%if(!(idSeleccionado).equals("0")){%>
+	<div>
+	<label>Dias maximos de reserva para el tipo seleccionado: </label><%= tipo2.getCantdiasMax() %>
+	<input type="hidden" name="diasmax" value=<%= tipo2.getCantdiasMax() %>>
+	</div>
+	<div>
+	<label>Dias maximos de anticipacion de la reserva para el tipo seleccionado: </label><%= tipo2.getDiasmaxanti() %>
+	<input type="hidden" name="diasanti" value=<%= tipo2.getDiasmaxanti()%>>
+	</div>
 	<div class="form-group">
     <label for="fecha-inic">Fecha de Inicio</label>
     <input  type="text" class="form-control" name="fechaini" style="width:300px; height:35px" >
@@ -81,7 +96,7 @@
     <label for="fecha-fin">Fecha de Fin de Rerserva</label>
     <input type="text" class="form-control" name="fechafin" style="width:300px;height:35px" >
   	</div>
-	<%} %>
+	<%}%>
 	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
 	</div>

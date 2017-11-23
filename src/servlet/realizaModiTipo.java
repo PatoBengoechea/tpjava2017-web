@@ -42,8 +42,10 @@ public class realizaModiTipo extends HttpServlet {
 		String id = request.getParameter("idhi").toString();
 		String desc = request.getParameter("desctxt").toString();
 		String cant = request.getParameter("canttxt").toString();
+		String diasmax = request.getParameter("diasmaxtxt").toString();
 		int cantidad = Integer.parseInt(cant);
 		int idTipo = Integer.parseInt(id);
+		int diasm = Integer.parseInt(diasmax);
 		boolean solo = false;
 		if(request.getParameter("soloenc")!=null){
 		solo = true;
@@ -52,6 +54,7 @@ public class realizaModiTipo extends HttpServlet {
 		tipo.setCantdiasMax(cantidad);
 		tipo.setSoloEnc(solo);
 		tipo.setIdTipo(idTipo);
+		tipo.setDiasmaxanti(diasm);
 		tiposs.editar(tipo);
 		request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
 	}

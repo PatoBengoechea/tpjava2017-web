@@ -27,6 +27,7 @@ public class DataTipoElemento {
 					te.setDescTipo(rs.getString("descripcion"));
 					te.setCantdiasMax(rs.getInt("cantDiasMax"));
 					te.setSoloEnc(rs.getBoolean("soloenc"));
+					te.setDiasmaxanti(rs.getInt("diasmaxanti"));
 					tipoelementos.add(te);
 				}
 			} 
@@ -50,7 +51,7 @@ public class DataTipoElemento {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idTipo, descripcion, cantDiasMax, soloenc from tipoelemento where idTipo = ?");
+					"select idTipo, descripcion, cantDiasMax, soloenc, diasmaxanti from tipoelemento where idTipo = ?");
 			stmt.setInt(1, t.getIdTipo());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){	
@@ -58,6 +59,7 @@ public class DataTipoElemento {
 				tipoelemento.setDescTipo(rs.getString("descripcion"));
 				tipoelemento.setCantdiasMax(rs.getInt("cantDiasMax"));
 				tipoelemento.setSoloEnc(rs.getBoolean("soloenc"));
+				tipoelemento.setDiasmaxanti(rs.getInt("diasmaxanti"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,11 +80,12 @@ public class DataTipoElemento {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"insert into tipoelemento(descripcion, cantDiasMax, soloenc) values (?,?,?)"
+					"insert into tipoelemento(descripcion, cantDiasMax, soloenc, diasmaxanti) values (?,?,?,?)"
 					);
 			stmt.setString(1, tipoe.getDescTipo().toString());
 			stmt.setInt(2, tipoe.getCantdiasMax());
 			stmt.setBoolean(3, tipoe.isSoloEnc());
+			stmt.setInt(4, tipoe.getDiasmaxanti());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -101,11 +104,12 @@ public class DataTipoElemento {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
 					.prepareStatement(
-					"update tipoelemento set descripcion = ?, cantDiasMax = ?, soloenc= ? where idTipo = ?");
+					"update tipoelemento set descripcion = ?, cantDiasMax = ?, soloenc= ?, diasmaxanti = ? where idTipo = ?");
 			stmt.setString(1, tipo.getDescTipo());
 			stmt.setInt(2, tipo.getCantdiasMax());
 			stmt.setBoolean(3, tipo.isSoloEnc());
-			stmt.setInt(4, tipo.getIdTipo());
+			stmt.setInt(4, tipo.getDiasmaxanti());
+			stmt.setInt(5, tipo.getIdTipo());
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {
@@ -154,6 +158,7 @@ public class DataTipoElemento {
 					te.setDescTipo(rs.getString("descripcion"));
 					te.setCantdiasMax(rs.getInt("cantDiasMax"));
 					te.setSoloEnc(rs.getBoolean("soloenc"));
+					te.setDiasmaxanti(rs.getInt("diasmaxanti"));
 					tipoelementos.add(te);
 				}
 			} 

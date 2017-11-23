@@ -1,12 +1,12 @@
 Req 1: 2 puntos
 
 Las personas deben tener una categoría (encargado, admin o usuario).																Hecho
-Los tipos de elementos pueden exigir que sólo un encargado pueda reserver elementos de dicho tipo.									Hecho (falta filtrar)
+Los tipos de elementos pueden exigir que sólo un encargado pueda reserver elementos de dicho tipo.									Hecho
 
 Req 2: 3.5 puntos
 
-Los tipos de elementos pueden tener un límite máximo de tiempo de reserva (en horas) que debe controlarse durante la reserva.
-Los tipos de elementos puden tener una cantidad máxima de días de anticipación para ser reservados.
+Los tipos de elementos pueden tener un límite máximo de tiempo de reserva (en horas) que debe controlarse durante la reserva.		Hecho
+Los tipos de elementos puden tener una cantidad máxima de días de anticipación para ser reservados.									Hecho
 Req 3: 2.5 puntos
 
 Los administradores son los únicos que pueden crear usuarios y tipos de elementos.													Hecho
@@ -14,8 +14,7 @@ Los administradores son quienes pueden habilitar o deshabilitar usuarios.							
 Los administradores pueden anular cualquier reserva pendiente, por lo que deben poder ver todas las reservas disponibles.			Hecho
 
 Req 4: 1 punto
-
 Usar custom exceptions y log de errores.
-Req 5: 1 punto
 
+Req 5: 1 punto
 Enviar emails para confirmar reservas, cancelaciones y anulaci

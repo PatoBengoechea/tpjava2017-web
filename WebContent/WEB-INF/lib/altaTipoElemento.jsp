@@ -19,6 +19,9 @@
 	</div>
 	<p>Tipo Solicitud: SOLO ENCARGADO <input type="checkbox" name="soloenc"> (Check para solo poder reservado por un encargado)</p>
 	<div>
+		<p>Cantidad Dias Max</p><input type="text" name="diasmaxtxt" value="0"> (Ingrese 0 si no existe un maximo)
+	</div>
+	<div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">CONFIRMAR</button> 
 	</div>
   </form>
