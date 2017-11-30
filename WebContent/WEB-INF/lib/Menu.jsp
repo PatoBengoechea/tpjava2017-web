@@ -33,6 +33,7 @@
   	<form class="form-signin" name="signin" action="mostrarReservas" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;">Mostrar Reservas</button> 
   	</form>
+
 	</div>
 </div>
 </body>

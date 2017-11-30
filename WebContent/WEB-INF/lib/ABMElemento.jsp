@@ -16,7 +16,41 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+  
+ 	<li class="nav-item active">
+ 	<form class="form-signin" name="signin" action="aMenuAdmin" method="post">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 150px; margin-bottom: 30px;  ">Menu</button>
+    </form>
+    </li>
+  	<li class="nav-item active">
+  	 <form class="form-signin" name="signin" action="aABMTipoElemento" method="post">
+     <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 200px; margin-bottom: 30px;  ">ABM Tipo Elemento</button>
+     </form>
+    </li>
+    <li class="nav-item active">
+     <form class="form-signin" name="signin" action="aABMElemento" method="post">
+     <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 150px; margin-bottom: 30px;  ">ABM Elemento</button>
+     </form>
+    </li>
+    <li class="nav-item active">
+      <form class="form-signin" name="signin" action="aABMPersona" method="post">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 150px; margin-bottom: 30px;  ">ABM Persona</button>
+      </form>
+    </li>
+    <li class="nav-item active">
+     <form class="form-signin" name="signin" action="aABMReservar" method="post">
+     <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 150px; margin-bottom: 30px;  "> Reservar</button>
+     </form>
+    </li>
+    <li class="nav-item active">
+     <form class="form-signin" name="signin" action="mostrarReservas" method="post">
+     <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 200px; margin-bottom: 30px;  "> Mostrar Reservas</button>
+     </form>
+    </li>
+  </ul>
+</nav>
 <div class="container">
   <h2>ABM ELEMENTOS</h2>
               
