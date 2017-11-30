@@ -43,7 +43,7 @@ public class eliminarRes extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("idRes").toString());
 		res.setIdReserva(id);
 		ctrl.delete(res);
-		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/lib/mostrarTodasReservas.jsp").forward(request, response);
 	}
 
 }

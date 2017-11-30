@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -20,6 +23,7 @@ import util.AppDataException;
 @WebServlet("/eliminarTipo")
 public class eliminarTipo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,6 +55,9 @@ public class eliminarTipo extends HttpServlet {
 			}
 		catch(Exception e)
 		{
+			
+			logger = LogManager.getLogger(getClass());
+			logger.error(e.getMessage());
 			PrintWriter out = response.getWriter(); 
 			out.println("<script type=\"text/javascript\">");
 		    out.println("alert('"+ e.getMessage() +"');");

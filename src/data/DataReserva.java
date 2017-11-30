@@ -312,5 +312,40 @@ import entities.TipoElemento;
 					return reservas;
 				}
 
-		
+			public ArrayList<Reserva> getAllByIdElem(Reserva res){
+				Reserva r = null;
+				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+				PreparedStatement stmt=null;
+				ResultSet rs=null;
+				try {
+					stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+							"select * from reserva where idElemento = ? ");
+					stmt.setInt(1, res.getElemento().getIdElemento());
+					rs=stmt.executeQuery();
+					while(rs.next()){
+							r=new Reserva();
+							r.setIdReserva(rs.getInt("idReserva"));
+							r.setFechaInicio(rs.getDate("fechaInicio"));
+							r.setFechaFin(rs.getDate("fechaFin"));
+							//r.getElemento().setIdElemento(rs.getInt("idElemento"));
+							//r.getPersona().setIdPersona(rs.getInt("idPersona"));
+							
+							reservas.add(r);
+							
+						
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				try {
+					if(rs!=null)rs.close();
+					if(stmt!=null)stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				return reservas;
+			}
 }

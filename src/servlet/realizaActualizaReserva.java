@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -72,8 +73,13 @@ public class realizaActualizaReserva extends HttpServlet {
 		r.setFechaFin(fFin);
 		int danti = Integer.parseInt(diasanti);
 		int dres = Integer.parseInt(diasres);
-		controlador.addReserva(r,dres,danti);
-		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
+		String message = controlador.addReserva(r,dres,danti);
+		PrintWriter out = response.getWriter();
+		out.println("<script type=\"text/javascript\">");
+	    out.println("alert('"+ message +"');");
+	    out.println("location='WEB-INF/lib/Reservar.jsp';");
+	    out.println("</script>");
+		//request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
 		}
 	}
 
