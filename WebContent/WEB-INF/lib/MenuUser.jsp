@@ -23,7 +23,13 @@
    	</form>
   	<form class="form-signin" name="signin" action="mostrarReservas" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;">Mostrar Reservas</button> 
-  	</form>
+  	</form> 	
+  	<form class="form-signin" name="signin" action="editarPer" method="post">
+   	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;">Editar Mis Datos</button>
+   	</form>
+   	 <form class="form-signin" name="signin" action="aLogin" method="post">
+     <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;">Cerrar Sesion </button>
+     </form>
 	</div>
 </div>
 </body>

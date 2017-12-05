@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class altaElemento
+ * Servlet implementation class aLogin
  */
-@WebServlet("/altaElemento")
-public class altaElemento extends HttpServlet {
+@WebServlet("/aLogin")
+public class aLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public altaElemento() {
+    public aLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,11 +34,8 @@ public class altaElemento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {	
-			request.getRequestDispatcher("login.html").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("login.html").forward(request, response);
 	}
 
 }

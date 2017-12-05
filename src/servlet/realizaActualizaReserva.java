@@ -46,9 +46,10 @@ public class realizaActualizaReserva extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idElemento = request.getParameter("tipoElemento").toString();
-		request.setAttribute("idSel", idElemento);
+
 		if(request.getParameter("elemento") == null){
+		String idElemento = request.getParameter("tipoElemento").toString();
+		request.setAttribute("idSel", idElemento);	
 		request.getRequestDispatcher("WEB-INF/lib/Reservar.jsp").forward(request, response);
 		}
 		else{

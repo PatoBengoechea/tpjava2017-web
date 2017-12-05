@@ -32,6 +32,9 @@
   	<form class="form-signin" name="signin" action="mostrarTodasReservas" method="post">
    	<button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;">Mostrar Todas Las Reservas</button> 
   	</form>
+     <form class="form-signin" name="signin" action="aLogin" method="post">
+     <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 890px; margin-bottom: 30px;"> Cerrar Sesion </button>
+     </form>
 	</div>
 </div>
 </body>
