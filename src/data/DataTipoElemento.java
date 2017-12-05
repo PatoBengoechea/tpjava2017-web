@@ -133,7 +133,7 @@ public class DataTipoElemento {
 			stmt.executeUpdate();			
 			}
 		catch (Exception e) {
-			AppDataException ape = new AppDataException(e, e.getMessage());
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
 			throw ape;
 		}
 		try {

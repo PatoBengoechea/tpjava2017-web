@@ -48,8 +48,9 @@ public class Start extends HttpServlet {
 			per.setPassword(pass);
 			
 			CtrlABMCPersona ctrl= new CtrlABMCPersona();
-			
+		
 			Persona pers =ctrl.buscarUsuario(per);
+			
 			
 			if(pers.getUsuario().equals("vacio"))
 			{	
@@ -77,7 +78,7 @@ public class Start extends HttpServlet {
 		} catch (Exception e) {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
-		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("alert('Ha ocurrido un error al tratar de loguearse');");
 		    out.println("location='login.html';");
 		    out.println("</script>");
 		}
