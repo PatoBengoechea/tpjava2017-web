@@ -13,7 +13,7 @@ import util.AppDataException;
 public class DataTipoElemento {
 	
 
-	public ArrayList<TipoElemento> getAll(){
+	public ArrayList<TipoElemento> getAll() throws Exception{
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<TipoElemento> tipoelementos = new ArrayList<TipoElemento>();
@@ -32,7 +32,7 @@ public class DataTipoElemento {
 				}
 			} 
 		}catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 		try {
 			if(rs!=null) rs.close();
@@ -40,12 +40,12 @@ public class DataTipoElemento {
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			throw e;
 		}
 	return tipoelementos;
 	}
 
-	public TipoElemento getById(TipoElemento t){
+	public TipoElemento getById(TipoElemento t) throws Exception{
 		TipoElemento tipoelemento = new TipoElemento();
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -62,7 +62,7 @@ public class DataTipoElemento {
 				tipoelemento.setDiasmaxanti(rs.getInt("diasmaxanti"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		
 		try {
@@ -70,12 +70,12 @@ public class DataTipoElemento {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		return tipoelemento;
 	}
 	
-	public void add(TipoElemento tipoe){
+	public void add(TipoElemento tipoe) throws Exception{
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -88,18 +88,18 @@ public class DataTipoElemento {
 			stmt.setInt(4, tipoe.getDiasmaxanti());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 
 	
-	public void update(TipoElemento tipo) {
+	public void update(TipoElemento tipo) throws Exception {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -113,13 +113,13 @@ public class DataTipoElemento {
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	
 	}
@@ -140,11 +140,11 @@ public class DataTipoElemento {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 
-	public ArrayList<TipoElemento> getAllTipoUser() {
+	public ArrayList<TipoElemento> getAllTipoUser() throws Exception{
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<TipoElemento> tipoelementos = new ArrayList<TipoElemento>();
@@ -163,7 +163,7 @@ public class DataTipoElemento {
 				}
 			} 
 		}catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 		try {
 			if(rs!=null) rs.close();
@@ -171,7 +171,7 @@ public class DataTipoElemento {
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			throw e;
 		}
 	return tipoelementos;
 	}

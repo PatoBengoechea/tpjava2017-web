@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +33,15 @@ public class eliminarPersona extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CtrlABMCPersona ctrlPer = new CtrlABMCPersona();
 		int id =  Integer.parseInt((String)request.getParameter("idPersona"));
-		ctrlPer.eliminoPer(id);
+		try {
+			ctrlPer.eliminoPer(id);
+		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
+		}
 		request.getRequestDispatcher("WEB-INF/lib/ABMPersona.jsp").forward(request, response);
 	}
 

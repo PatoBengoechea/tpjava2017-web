@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +44,15 @@ public class eliminarRes extends HttpServlet {
 		CtrlABMCReserva ctrl = new CtrlABMCReserva();
 		int id = Integer.parseInt(request.getParameter("idRes").toString());
 		res.setIdReserva(id);
-		ctrl.delete(res);
+		try {
+			ctrl.delete(res);
+		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
+		}
 		request.getRequestDispatcher("WEB-INF/lib/mostrarTodasReservas.jsp").forward(request, response);
 	}
 

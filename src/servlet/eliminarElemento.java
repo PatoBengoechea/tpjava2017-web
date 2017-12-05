@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +42,15 @@ public class eliminarElemento extends HttpServlet {
 		CtrlABMCElemento ctrl = new CtrlABMCElemento();
 		Elemento elem = new Elemento();
 		elem.setIdElemento(Integer.parseInt(request.getParameter("idElemento")));
-		ctrl.deleteElemento(elem);
+		try {
+			ctrl.deleteElemento(elem);
+		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
+		}
 		request.getRequestDispatcher("WEB-INF/lib/ABMElemento.jsp").forward(request, response);
 		
 		

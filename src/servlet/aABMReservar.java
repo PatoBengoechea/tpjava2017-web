@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +32,11 @@ public class aABMReservar extends HttpServlet {
 			request.setAttribute("idSel", 0);
 			request.getRequestDispatcher("WEB-INF/lib/Reservar.jsp").forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
 		}
 	}
 }

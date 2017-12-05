@@ -75,7 +75,11 @@ public class Start extends HttpServlet {
 			}
 			}		
 		} catch (Exception e) {
-			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
 		}
 		
 	}

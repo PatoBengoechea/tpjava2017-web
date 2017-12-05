@@ -11,7 +11,7 @@ public class CtrlABMCPersona {
 		datap = new DataPersona();
 	}
 	
-	public Persona buscarUsuario(Persona usu) {
+	public Persona buscarUsuario(Persona usu) throws Exception {
 		ArrayList<Persona> personas = new ArrayList<Persona>();
 		personas = datap.getAll();
 		Persona pers = new Persona();
@@ -27,21 +27,21 @@ public class CtrlABMCPersona {
 		return pers;
 	}
 
-	public void addPersona(Persona per){
+	public void addPersona(Persona per)throws Exception{
 		datap.add(per);
 	}
 	
-	public void updatePersona(Persona per){
+	public void updatePersona(Persona per)throws Exception{
 		datap.update(per);
 	}
-	public Persona buscarPersona(Persona per){
+	public Persona buscarPersona(Persona per)throws Exception{
 		return datap.getByDni(per);
 	}
 
-	public Persona buscarPersonaID(Persona per){
+	public Persona buscarPersonaID(Persona per)throws Exception{
 		return datap.getById(per);
 	}
-	public ArrayList<Persona> getAll()
+	public ArrayList<Persona> getAll()throws Exception
 	{
 		return datap.getAll();
 	}
@@ -50,7 +50,7 @@ public class CtrlABMCPersona {
 		
 	}
  	
- 	public void eliminoPer(int id)
+ 	public void eliminoPer(int id)throws Exception
  	{
  		datap.delete(id);
  	}

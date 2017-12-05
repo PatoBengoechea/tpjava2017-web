@@ -61,7 +61,7 @@ public class eliminarTipo extends HttpServlet {
 			PrintWriter out = response.getWriter(); 
 			out.println("<script type=\"text/javascript\">");
 		    out.println("alert('"+ e.getMessage() +"');");
-		    out.println("location='~/WEB-INF/lib/ABMTipoElemento.jsp';");
+		    out.println("location='login.html';");
 		    out.println("</script>");
 		    //response.sendRedirect("WEB-INF/lib/ABMTipoElemento.jsp");
 		}

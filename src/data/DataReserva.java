@@ -13,7 +13,7 @@ import entities.TipoElemento;
 
 	public class DataReserva {
 			
-		public void add(Reserva r){
+		public void add(Reserva r) throws Exception{
 			PreparedStatement stmt=null;
 			ResultSet keyResultSet=null;
 			try {
@@ -33,14 +33,14 @@ import entities.TipoElemento;
 					r.setIdReserva(keyResultSet.getInt(1));
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				throw e;
 			}
 			try {
 				if(keyResultSet!=null)keyResultSet.close();
 				if(stmt!=null)stmt.close();
 				FactoryConexion.getInstancia().releaseConn();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw e;
 			}
 	}
 
@@ -98,7 +98,7 @@ import entities.TipoElemento;
 //					return reservas;
 //				}
 			
-			public ArrayList<Reserva> getAll(){
+			public ArrayList<Reserva> getAll() throws Exception{
 				Statement stmt = null;
 				ResultSet rs = null;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
@@ -141,13 +141,13 @@ import entities.TipoElemento;
 							}	
 						}
 					}catch (Exception e) {
-						e.printStackTrace();
+						throw e;
 					}try {
 						if(rs!=null) rs.close();
 						if(stmt!=null) stmt.close();
 						FactoryConexion.getInstancia().releaseConn();
 						} catch (SQLException e) {
-							e.printStackTrace();
+							throw e;
 							}
 					return reservas;
 				}
@@ -182,7 +182,7 @@ import entities.TipoElemento;
 //					return reservas;
 //				}
 		
-			public ArrayList<Reserva> getAll(Elemento el){
+			public ArrayList<Reserva> getAll(Elemento el) throws Exception{
 				PreparedStatement stmt = null;
 				ResultSet rs = null;
 				ArrayList<Reserva> susReservas = new ArrayList<Reserva>();
@@ -226,18 +226,18 @@ import entities.TipoElemento;
 							}	
 						}
 					}catch (Exception e) {
-						e.printStackTrace();
+						throw e;
 					}try {
 						if(rs!=null) rs.close();
 						if(stmt!=null) stmt.close();
 						FactoryConexion.getInstancia().releaseConn();
 						} catch (SQLException e) {
-							e.printStackTrace();
+							throw e;
 							}
 					return susReservas;
 				}
 			
-			public void delete(Reserva r) {
+			public void delete(Reserva r) throws Exception {
 				PreparedStatement stmt=null;
 				try {
 					stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
@@ -246,18 +246,18 @@ import entities.TipoElemento;
 					stmt.executeUpdate();
 					
 				} catch (SQLException e) {
-					e.printStackTrace();
+					throw e;
 				} 
 				
 				try {
 					if(stmt!=null)stmt.close();
 					FactoryConexion.getInstancia().releaseConn();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					throw e;
 				}
 			}
 
-			public ArrayList<Reserva> getAll(Persona per){
+			public ArrayList<Reserva> getAll(Persona per) throws Exception{
 				PreparedStatement stmt = null;
 				ResultSet rs = null;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
@@ -301,18 +301,18 @@ import entities.TipoElemento;
 							}	
 						}
 					}catch (Exception e) {
-						e.printStackTrace();
+						throw e;
 					}try {
 						if(rs!=null) rs.close();
 						if(stmt!=null) stmt.close();
 						FactoryConexion.getInstancia().releaseConn();
 						} catch (SQLException e) {
-							e.printStackTrace();
+							throw e;
 							}
 					return reservas;
 				}
 
-			public ArrayList<Reserva> getAllByIdElem(Reserva res){
+			public ArrayList<Reserva> getAllByIdElem(Reserva res)throws Exception{
 				Reserva r = null;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 				PreparedStatement stmt=null;
@@ -335,7 +335,7 @@ import entities.TipoElemento;
 						
 					}
 				} catch (SQLException e) {
-					e.printStackTrace();
+					throw e;
 				}
 				
 				try {
@@ -343,7 +343,7 @@ import entities.TipoElemento;
 					if(stmt!=null)stmt.close();
 					FactoryConexion.getInstancia().releaseConn();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					throw e;
 				}
 				
 				return reservas;

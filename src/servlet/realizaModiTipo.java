@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,7 +57,15 @@ public class realizaModiTipo extends HttpServlet {
 		tipo.setSoloEnc(solo);
 		tipo.setIdTipo(idTipo);
 		tipo.setDiasmaxanti(diasm);
-		tiposs.editar(tipo);
+		try {
+			tiposs.editar(tipo);
+		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
+		}
 		request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
 	}
 

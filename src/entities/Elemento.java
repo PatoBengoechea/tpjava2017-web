@@ -58,7 +58,7 @@ public class Elemento implements Serializable {
 	public void setTipo(TipoElemento tipo) {
 		this.tipo = tipo;
 	}
-	public void setTipo(int idtipo) {
+	public void setTipo(int idtipo) throws Exception {
 		TipoElemento tipoe = new TipoElemento(idtipo);
 		TipoElemento tiponuevo = new TipoElemento();
 		tiponuevo = ctrl.buscarTipoElemento(tipoe);

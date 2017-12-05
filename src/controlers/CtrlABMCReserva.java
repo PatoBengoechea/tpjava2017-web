@@ -18,7 +18,7 @@ public class CtrlABMCReserva {
 	}
 	
 	
-	public String addReserva(Reserva r, int diasmaxres, int diasmaxanti){
+	public String addReserva(Reserva r, int diasmaxres, int diasmaxanti)throws Exception{
 		String message = "";
 		Date fechaFin = r.getFechaFin();
 		Date fechaIni = r.getFechaInicio();
@@ -71,21 +71,21 @@ public class CtrlABMCReserva {
 		return message;
 	}
 	
-	public ArrayList<Reserva> getAll()
+	public ArrayList<Reserva> getAll()throws Exception
 	{
 		return datar.getAll();
 	}
-	public ArrayList<Reserva> getAll(Elemento e)
+	public ArrayList<Reserva> getAll(Elemento e)throws Exception
 	{
 		return datar.getAll(e);
 	}
 	
-	public void delete(Reserva r)
+	public void delete(Reserva r)throws Exception
 	{
 		datar.delete(r);
 	}
 	
-	public ArrayList<Reserva> getAll(Persona per)
+	public ArrayList<Reserva> getAll(Persona per)throws Exception
 	{
 		return datar.getAll(per);
 	}

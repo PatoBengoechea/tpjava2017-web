@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +64,15 @@ public class realizaModiPersona extends HttpServlet {
 		int id = Integer.parseInt(ids);
 		per.setIdPersona(id);
 		per.setHabilitado(hab);
-		tiposs.updatePersona(per);
+		try {
+			tiposs.updatePersona(per);
+		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
+		}
 		HttpSession sesion = request.getSession();
 		Persona per2 = (Persona)sesion.getAttribute("user");
 		if(per2.isAdmin()){

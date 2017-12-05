@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +43,15 @@ public class realizaModiElemento extends HttpServlet {
 		int idtipo = Integer.parseInt((request.getParameter("tipElem").toString()));
 		te.setIdTipo(idtipo);
 		el.setTipo(te);
-		ctrl.update(el);
+		try {
+			ctrl.update(el);
+		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='index.jsp';");
+		    out.println("</script>");
+		}
 		request.getRequestDispatcher("WEB-INF/lib/ABMElemento.jsp").forward(request, response);	
 	}
 }

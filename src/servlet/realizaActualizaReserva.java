@@ -66,7 +66,12 @@ public class realizaActualizaReserva extends HttpServlet {
 	    p.setIdPersona(p.getIdPersona());
 		String idElem = request.getParameter("elemento").toString();
 		e.setIdElemento(idElem);
-		r.setElemento(controladorElemento.buscarElemento(e));
+		try {
+			r.setElemento(controladorElemento.buscarElemento(e));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		r.setPersona(p);
 		Date fInicio = Date.valueOf(fechaini);
 		Date fFin = Date.valueOf(fechafin);
@@ -74,7 +79,13 @@ public class realizaActualizaReserva extends HttpServlet {
 		r.setFechaFin(fFin);
 		int danti = Integer.parseInt(diasanti);
 		int dres = Integer.parseInt(diasres);
-		String message = controlador.addReserva(r,dres,danti);
+		String message = "No se pudo realizar la Reserva";
+		try {
+			message = controlador.addReserva(r,dres,danti);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 	    out.println("alert('"+ message +"');");

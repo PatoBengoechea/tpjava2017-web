@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.print.attribute.standard.DocumentName;
 import javax.servlet.ServletException;
@@ -53,7 +54,11 @@ public class realizaAltaElemento extends HttpServlet {
 			tiposs.Add(tipo);
 			request.getRequestDispatcher("WEB-INF/lib/ABMElemento.jsp").forward(request, response);			
 		} catch (Exception e) {
-			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
 		}
 	}
 
