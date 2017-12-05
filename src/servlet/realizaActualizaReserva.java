@@ -78,9 +78,11 @@ public class realizaActualizaReserva extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");
 	    out.println("alert('"+ message +"');");
-	    out.println("location='WEB-INF/lib/Reservar.jsp';");
+	    out.println("location='index.jsp';");
 	    out.println("</script>");
-		//request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
+	    out.println();
+	    //response.sendRedirect("WEB-INF/lib/Reservar.jsp");
+		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
 		}
 	}
 

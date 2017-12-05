@@ -1,6 +1,7 @@
 package data;
 
 import entities.TipoElemento;
+import util.AppDataException;
 import entities.Elemento;
 import entities.Persona;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class DataElemento {
 	
-	public void add(Elemento el){
+	public void add(Elemento el) throws Exception{
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -23,8 +24,8 @@ public class DataElemento {
 			stmt.setInt(3, el.getCapacidad());
 			stmt.setInt(4, el.getTipo().getIdTipo());
 			stmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException  e) {
+			throw e;
 		}
 		try {
 			if(stmt!=null)stmt.close();
@@ -34,7 +35,7 @@ public class DataElemento {
 		}
 	}
 
-	public ArrayList<Elemento> getAll(){
+	public ArrayList<Elemento> getAll() throws Exception{
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Elemento> elementos = new ArrayList<Elemento>();
@@ -58,13 +59,13 @@ public class DataElemento {
 					}	
 				}
 			}catch (Exception e) {
-				e.printStackTrace();
+				throw e;
 			}try {
 				if(rs!=null) rs.close();
 				if(stmt!=null) stmt.close();
 				FactoryConexion.getInstancia().releaseConn();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					throw e;
 					}
 			return elementos;
 		}
@@ -101,7 +102,7 @@ public class DataElemento {
 
 	}*/
 	
-	public Elemento getById(Elemento ele){
+	public Elemento getById(Elemento ele) throws Exception{
 		Elemento t = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -121,7 +122,7 @@ public class DataElemento {
 			
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		
 		try {
@@ -129,13 +130,13 @@ public class DataElemento {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		
 		return t;
 	}
 	
-	public ArrayList<Elemento> getByTipo(TipoElemento tipo){
+	public ArrayList<Elemento> getByTipo(TipoElemento tipo) throws Exception{
 
 		ArrayList<Elemento> es = new ArrayList<Elemento>();
 		PreparedStatement stmt=null;
@@ -162,7 +163,7 @@ public class DataElemento {
 					}	
 				}
 		} catch (SQLException ex) {
-			ex.printStackTrace();
+			throw ex;
 		}
 		
 		try {
@@ -178,7 +179,7 @@ public class DataElemento {
 	
 	
 	
-	public void delete(Elemento el) {
+	public void delete(Elemento el)throws Exception {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -188,19 +189,19 @@ public class DataElemento {
 		    stmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		} 
 		
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 	
 	
-	public void update(Elemento el) {
+	public void update(Elemento el) throws Exception {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -214,13 +215,13 @@ public class DataElemento {
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	
 	}
