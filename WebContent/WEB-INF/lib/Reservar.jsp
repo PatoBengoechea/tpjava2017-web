@@ -23,7 +23,7 @@
 <% 
 
 Persona per2 = (Persona)session.getAttribute("user");
-if(per2.isEncargado() || per2.isAdmin()){%>
+if(per2.isAdmin()){%>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="height: 50px">
   <ul class="navbar-nav">
  	<li class="nav-item active">

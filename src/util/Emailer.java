@@ -32,6 +32,7 @@ public static Emailer instance;
 			 * props.put("mail.username", "somemail@gmail.com");
 			 * props.put("mail.password","someRandomwPassword");
 			 */
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

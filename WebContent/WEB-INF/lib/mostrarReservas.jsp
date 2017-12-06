@@ -26,21 +26,21 @@
     </form>
     </li>
     <li class="nav-item active">
-      <form class="form-signin" name="signin" action="aABMPersona" method="post">
-      <button class="btn btn-link" type="submit" style="width: 150px; margin-bottom: 30px; height: 60px ;font-size: 20px; padding-top: 0.5cm ">ABM Persona</button>
+      <form class="form-signin" name="signin" action="editarPer" method="post">
+      <button class="btn btn-link" type="submit" style="width: 200px; margin-bottom: 30px; height: 60px ;font-size: 20px; padding-top: 0.5cm ">Editar Mis Datos</button>
       </form>
     </li>
-    <li class="nav-item active">
-      <form class="form-signin" name="signin" action="editarPer" method="post">
-      <button class="btn btn-link" type="submit" style="width: 150px; margin-bottom: 30px; height: 60px ;font-size: 20px; padding-top: 0.5cm ">Editar Mis Datos</button>
-      </form>
+        <li class="nav-item active">
+     <form class="form-signin" name="signin" action="aABMReservar" method="post">
+     <button class="btn btn-link" type="submit" style="width: 150px; margin-bottom: 30px; height: 60px ; font-size: 20px; padding-top: 0.5cm  "> Reservar</button>
+     </form>
     </li>
     <li class="nav-item active">
      <form class="form-signin" name="signin" action="mostrarReservas" method="post">
      <button class="btn btn-link" type="submit" style="width: 200px; margin-bottom: 30px; height: 60px ; font-size: 20px; padding-top: 0.5cm  "> Mostrar Mis Reservas</button>
      </form>
     </li>
-        <li class="nav-item active">
+    <li class="nav-item active">
      <form class="form-signin" name="signin" action="aLogin" method="post">
      <button class="btn btn-link" type="submit" style="width: 200px; margin-bottom: 30px; height: 60px ; font-size: 20px; padding-top: 0.5cm  "> Cerrar Sesion </button>
      </form>

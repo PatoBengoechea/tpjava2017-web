@@ -31,7 +31,7 @@ public class CtrlABMCReserva {
 		System.out.println(diasanticipo);
 		int band = 0;
 		if(fechaIni.after(fechaFin) || fechaIni.before(fechaHoy)){
-			message = "Ingrese nuevamente las fechas por fchas validas. ";
+			message = "Ingrese nuevamente las fechas por fechas validas. ";
 			System.out.println("Ingrese nuevamente las fechas por fechas validas");
 		}
 		else{
@@ -89,16 +89,4 @@ public class CtrlABMCReserva {
 	{
 		return datar.getAll(per);
 	}
-	
-//	public ArrayList<Reserva> getAll(Persona per){
-//		ArrayList<Reserva> resers = datar.getAll();
-//		ArrayList<Reserva> reserPer = new ArrayList<Reserva>();
-//		for (Reserva reserva : resers) {
-//			if(reserva.getPersona().getIdPersona() == per.getIdPersona())
-//			{
-//				reserPer.add(reserva);
-//			}
-//		}
-//		return reserPer;
-//	}
 }
