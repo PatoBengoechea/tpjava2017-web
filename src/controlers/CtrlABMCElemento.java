@@ -1,6 +1,7 @@
 package controlers;
 import entities.Elemento;
 import entities.TipoElemento;
+import util.AppDataException;
 
 import java.util.ArrayList;
 
@@ -13,11 +14,11 @@ public class CtrlABMCElemento {
 		de = new DataElemento();
 	}
 	
-	public void Add(Elemento elemento) throws Exception {
+	public void Add(Elemento elemento) throws AppDataException {
 		de.add(elemento);
 	}
 	
-	public Elemento buscarElemento(Elemento elemento)throws Exception{
+	public Elemento buscarElemento(Elemento elemento)throws AppDataException{
 		return de.getById(elemento);
 	}
 	
@@ -25,20 +26,20 @@ public class CtrlABMCElemento {
 		return de.getAll();
 	}
 	
-	public ArrayList<Elemento> getByTipo(TipoElemento te)throws Exception{
+	public ArrayList<Elemento> getByTipo(TipoElemento te)throws AppDataException{
 		return de.getByTipo(te);
 	}
-	public void deleteElemento(Elemento e) throws Exception
+	public void deleteElemento(Elemento e) throws AppDataException
 	{
 		de.delete(e);
 	}
 	
-	public Elemento getByID(Elemento el)throws Exception
+	public Elemento getByID(Elemento el)throws AppDataException
 	{
 		return de.getById(el);
 	}
 	
-	public void update(Elemento el)throws Exception
+	public void update(Elemento el)throws AppDataException
 	{
 		de.update(el);
 	}

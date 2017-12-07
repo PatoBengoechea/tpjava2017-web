@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import controlers.CtrlABMCPersona;
 import entities.Persona;
+import util.AppDataException;
 
 /**
  * {@link Servlet} implementation class Start
@@ -19,6 +23,7 @@ import entities.Persona;
 @WebServlet({ "/Start", "/start" })
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
 
     /**
      * Default constructor. 
@@ -49,7 +54,19 @@ public class Start extends HttpServlet {
 			
 			CtrlABMCPersona ctrl= new CtrlABMCPersona();
 		
-			Persona pers =ctrl.buscarUsuario(per);
+			Persona pers = new Persona();;
+			try {
+				pers = ctrl.buscarUsuario(per);
+			} catch (AppDataException ape) {
+				logger = LogManager.getLogger(getClass());
+				logger.error(ape.getInnerException().getMessage());
+				PrintWriter out = response.getWriter(); 
+				out.println("<script type=\"text/javascript\">");
+			    out.println("alert('"+ ape.getMessage() +"');");
+			    out.println("location='login.html';");
+			    out.println("</script>");
+				
+			}
 			
 			
 			if(pers.getUsuario().equals("vacio"))
@@ -76,9 +93,11 @@ public class Start extends HttpServlet {
 			}
 			}		
 		} catch (Exception e) {
-			PrintWriter out = response.getWriter();
+			logger = LogManager.getLogger(getClass());
+			logger.error(e.getMessage());
+			PrintWriter out = response.getWriter(); 
 			out.println("<script type=\"text/javascript\">");
-		    out.println("alert('Ha ocurrido un error al tratar de loguearse');");
+		    out.println("alert('Intentelo mas tarde');");
 		    out.println("location='login.html';");
 		    out.println("</script>");
 		}

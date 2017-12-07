@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.Session;
+import org.apache.logging.log4j.LogManager;
 
 import controlers.CtrlABMCElemento;
 import controlers.CtrlABMCPersona;
@@ -18,6 +20,7 @@ import controlers.CtrlABMCReserva;
 import entities.Elemento;
 import entities.Persona;
 import entities.Reserva;
+import util.AppDataException;
 
 /**
  * Servlet implementation class realizaActualizaReserva
@@ -25,6 +28,7 @@ import entities.Reserva;
 @WebServlet("/realizaActualizaReserva")
 public class realizaActualizaReserva extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private org.apache.logging.log4j.Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -66,12 +70,24 @@ public class realizaActualizaReserva extends HttpServlet {
 	    p.setIdPersona(p.getIdPersona());
 		String idElem = request.getParameter("elemento").toString();
 		e.setIdElemento(idElem);
-		try {
-			r.setElemento(controladorElemento.buscarElemento(e));
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+			try {
+				r.setElemento(controladorElemento.buscarElemento(e));
+			} catch (AppDataException ape) {
+				
+				logger = LogManager.getLogger(getClass());
+				logger = LogManager.getLogger(getClass());
+				logger.error(ape.getInnerException().getMessage());
+				PrintWriter out = response.getWriter(); 
+				out.println("<script type=\"text/javascript\">");
+			    out.println("alert('"+ ape.getMessage() +"');");
+			    out.println("location='login.html';");
+			    out.println("</script>");
+			}
+		
+		
+			
+		
 		r.setPersona(p);
 		Date fInicio = Date.valueOf(fechaini);
 		Date fFin = Date.valueOf(fechafin);
@@ -82,9 +98,15 @@ public class realizaActualizaReserva extends HttpServlet {
 		String message = "No se pudo realizar la Reserva";
 		try {
 			message = controlador.addReserva(r,dres,danti);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (AppDataException ape) {
+			logger = LogManager.getLogger(getClass());
+			logger = LogManager.getLogger(getClass());
+			logger.error(ape.getInnerException().getMessage());
+			PrintWriter out = response.getWriter(); 
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('"+ ape.getMessage() +"');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
 		}
 		PrintWriter out = response.getWriter();
 		out.println("<script type=\"text/javascript\">");

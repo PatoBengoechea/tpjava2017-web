@@ -10,33 +10,25 @@ public static Emailer instance;
 	
 	private Properties props;
 	
-	public static Emailer getInstance(){
+	public static Emailer getInstance() throws AppDataException{
 		if (instance==null){
 			instance=new Emailer();
 		}
 		return instance;
 	}
 	
-	private Emailer() {
+	private Emailer() throws AppDataException {
 		
-		InputStream inputStream=getClass().getClassLoader().getResourceAsStream("app.properties");
-		try {
-			props = new Properties();
-			props.load(inputStream);
-			
-			/*
-			 * props.put("mail.smtp.auth", "true");
-			 * props.put("mail.smtp.starttls.enable", "true");
-			 * props.put("mail.smtp.host", "smtp.gmail.com");
-			 * props.put("mail.smtp.port", "587");
-			 * props.put("mail.username", "somemail@gmail.com");
-			 * props.put("mail.password","someRandomwPassword");
-			 */
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		props = new Properties();
+		//props.load(inputStream);
+		
+		
+		 props.put("mail.smtp.auth", "true");
+		 props.put("mail.smtp.starttls.enable", "true");
+		 props.put("mail.smtp.host", "smtp.live.com");
+		 props.put("mail.smtp.port", "587");
+		 props.put("mail.username", "tpjava.reservas@hotmail.com");
+		 props.put("mail.password","Reservando2017");
 		
 	}
 	

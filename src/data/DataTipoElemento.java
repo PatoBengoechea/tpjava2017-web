@@ -13,7 +13,7 @@ import util.AppDataException;
 public class DataTipoElemento {
 	
 
-	public ArrayList<TipoElemento> getAll() throws Exception{
+	public ArrayList<TipoElemento> getAll() throws AppDataException{
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<TipoElemento> tipoelementos = new ArrayList<TipoElemento>();
@@ -32,7 +32,8 @@ public class DataTipoElemento {
 				}
 			} 
 		}catch (Exception e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		try {
 			if(rs!=null) rs.close();
@@ -40,12 +41,13 @@ public class DataTipoElemento {
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 	return tipoelementos;
 	}
 
-	public TipoElemento getById(TipoElemento t) throws Exception{
+	public TipoElemento getById(TipoElemento t) throws AppDataException{
 		TipoElemento tipoelemento = new TipoElemento();
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -62,7 +64,8 @@ public class DataTipoElemento {
 				tipoelemento.setDiasmaxanti(rs.getInt("diasmaxanti"));
 			}
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		
 		try {
@@ -70,12 +73,13 @@ public class DataTipoElemento {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		return tipoelemento;
 	}
 	
-	public void add(TipoElemento tipoe) throws Exception{
+	public void add(TipoElemento tipoe) throws AppDataException{
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -88,18 +92,20 @@ public class DataTipoElemento {
 			stmt.setInt(4, tipoe.getDiasmaxanti());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 	}
 
 	
-	public void update(TipoElemento tipo) throws Exception {
+	public void update(TipoElemento tipo) throws AppDataException {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -113,17 +119,19 @@ public class DataTipoElemento {
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 	
 	}
-	public void delete(TipoElemento tipo) throws Exception {
+	public void delete(TipoElemento tipo) throws AppDataException {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -139,12 +147,13 @@ public class DataTipoElemento {
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
-		} catch (SQLException e) {
-			throw e;
+		} catch (Exception e) {
+			AppDataException ape2 = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape2;
 		}
 	}
 
-	public ArrayList<TipoElemento> getAllTipoUser() throws Exception{
+	public ArrayList<TipoElemento> getAllTipoUser() throws AppDataException{
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<TipoElemento> tipoelementos = new ArrayList<TipoElemento>();
@@ -163,7 +172,8 @@ public class DataTipoElemento {
 				}
 			} 
 		}catch (Exception e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		try {
 			if(rs!=null) rs.close();
@@ -171,7 +181,8 @@ public class DataTipoElemento {
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 	return tipoelementos;
 	}

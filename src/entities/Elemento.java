@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import controlers.CtrlABMCTipoElemento;
 
 import entities.Reserva;
+import util.AppDataException;
 
 public class Elemento implements Serializable {
 	private int idElemento;
@@ -58,7 +59,7 @@ public class Elemento implements Serializable {
 	public void setTipo(TipoElemento tipo) {
 		this.tipo = tipo;
 	}
-	public void setTipo(int idtipo) throws Exception {
+	public void setTipo(int idtipo) throws AppDataException{
 		TipoElemento tipoe = new TipoElemento(idtipo);
 		TipoElemento tiponuevo = new TipoElemento();
 		tiponuevo = ctrl.buscarTipoElemento(tipoe);

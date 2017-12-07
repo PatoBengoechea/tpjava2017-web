@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Servlet implementation class aABMReservar
  */
 @WebServlet("/aABMReservar")
 public class aABMReservar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,6 +36,11 @@ public class aABMReservar extends HttpServlet {
 			request.setAttribute("idSel", 0);
 			request.getRequestDispatcher("WEB-INF/lib/Reservar.jsp").forward(request, response);
 		} catch (Exception e) {
+			
+			logger = LogManager.getLogger(getClass());
+			logger.error(e.getMessage());
+			
+			
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 		    out.println("alert('"+ e.getMessage()+"');");

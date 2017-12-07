@@ -53,14 +53,14 @@ public class eliminarTipo extends HttpServlet {
 			ctrlPer.eliminoTip(tipo);
 			request.getRequestDispatcher("WEB-INF/lib/ABMTipoElemento.jsp").forward(request, response);
 			}
-		catch(Exception e)
+		catch(AppDataException ape)
 		{
 			
 			logger = LogManager.getLogger(getClass());
-			logger.error(e.getMessage());
+			logger.error(ape.getInnerException().getMessage());
 			PrintWriter out = response.getWriter(); 
 			out.println("<script type=\"text/javascript\">");
-		    out.println("alert('"+ e.getMessage() +"');");
+		    out.println("alert('"+ ape.getMessage() +"');");
 		    out.println("location='login.html';");
 		    out.println("</script>");
 		    //response.sendRedirect("WEB-INF/lib/ABMTipoElemento.jsp");

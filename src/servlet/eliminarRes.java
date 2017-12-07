@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
 import controlers.CtrlABMCReserva;
 import entities.Reserva;
+import util.AppDataException;
 
 /**
  * Servlet implementation class eliminarRes
@@ -18,6 +22,7 @@ import entities.Reserva;
 @WebServlet("/eliminarRes")
 public class eliminarRes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private org.apache.logging.log4j.Logger logger;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,10 +51,13 @@ public class eliminarRes extends HttpServlet {
 		res.setIdReserva(id);
 		try {
 			ctrl.delete(res);
-		} catch (Exception e) {
-			PrintWriter out = response.getWriter();
+		} catch (AppDataException ape) {
+			logger = LogManager.getLogger(getClass());
+			logger = LogManager.getLogger(getClass());
+			logger.error(ape.getInnerException().getMessage());
+			PrintWriter out = response.getWriter(); 
 			out.println("<script type=\"text/javascript\">");
-		    out.println("alert('"+ e.getMessage()+"');");
+		    out.println("alert('"+ ape.getMessage() +"');");
 		    out.println("location='login.html';");
 		    out.println("</script>");
 		}

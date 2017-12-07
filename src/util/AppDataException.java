@@ -13,7 +13,11 @@ public class AppDataException extends Exception{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
+	
+	public Throwable getInnerException()
+	{
+		return innerException;
+	}
 
 	public AppDataException(Throwable e, String message){
 		this.innerException=e;

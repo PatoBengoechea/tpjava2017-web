@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import data.DataReserva;
 import entities.Reserva;
+import util.AppDataException;
+import util.Emailer;
 import entities.Elemento;
 import entities.Persona;
 
@@ -18,7 +20,7 @@ public class CtrlABMCReserva {
 	}
 	
 	
-	public String addReserva(Reserva r, int diasmaxres, int diasmaxanti)throws Exception{
+	public String addReserva(Reserva r, int diasmaxres, int diasmaxanti)throws AppDataException{
 		String message = "";
 		Date fechaFin = r.getFechaFin();
 		Date fechaIni = r.getFechaInicio();
@@ -44,7 +46,9 @@ public class CtrlABMCReserva {
 					if(r.getFechaInicio().after(res.getFechaFin()) || r.getFechaFin().before(res.getFechaInicio()))
 					{
 						datar.add(r);
-						message = "Reserva realizada";
+						message = "Reserva realizada" ;
+						Emailer.getInstance().send("nico.scandolo@live.com","Reservas", message + "Numero de Reserva" + r.getIdReserva());
+						break;
 					}
 					else
 					{
@@ -71,21 +75,21 @@ public class CtrlABMCReserva {
 		return message;
 	}
 	
-	public ArrayList<Reserva> getAll()throws Exception
+	public ArrayList<Reserva> getAll()throws AppDataException
 	{
 		return datar.getAll();
 	}
-	public ArrayList<Reserva> getAll(Elemento e)throws Exception
+	public ArrayList<Reserva> getAll(Elemento e)throws AppDataException
 	{
 		return datar.getAll(e);
 	}
 	
-	public void delete(Reserva r)throws Exception
+	public void delete(Reserva r)throws AppDataException
 	{
 		datar.delete(r);
 	}
 	
-	public ArrayList<Reserva> getAll(Persona per)throws Exception
+	public ArrayList<Reserva> getAll(Persona per)throws AppDataException
 	{
 		return datar.getAll(per);
 	}

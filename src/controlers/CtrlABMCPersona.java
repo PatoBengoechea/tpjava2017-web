@@ -3,6 +3,7 @@ package controlers;
 import java.util.ArrayList;
 
 import entities.Persona;
+import util.AppDataException;
 import data.DataPersona;
 
 public class CtrlABMCPersona {
@@ -11,7 +12,7 @@ public class CtrlABMCPersona {
 		datap = new DataPersona();
 	}
 	
-	public Persona buscarUsuario(Persona usu) throws Exception {
+	public Persona buscarUsuario(Persona usu) throws AppDataException {
 		ArrayList<Persona> personas = new ArrayList<Persona>();
 		personas = datap.getAll();
 		Persona pers = new Persona();

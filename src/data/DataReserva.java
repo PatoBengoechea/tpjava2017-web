@@ -10,10 +10,11 @@ import entities.Elemento;
 import entities.Persona;
 import entities.Reserva;
 import entities.TipoElemento;
+import util.AppDataException;
 
 	public class DataReserva {
 			
-		public void add(Reserva r) throws Exception{
+		public void add(Reserva r) throws AppDataException{
 			PreparedStatement stmt=null;
 			ResultSet keyResultSet=null;
 			try {
@@ -33,14 +34,16 @@ import entities.TipoElemento;
 					r.setIdReserva(keyResultSet.getInt(1));
 				}
 			} catch (Exception e) {
-				throw e;
+				AppDataException ape = new AppDataException(e, "Ha ocurrido un error, por favor intentelo mas tarde");
+				throw ape;
 			}
 			try {
 				if(keyResultSet!=null)keyResultSet.close();
 				if(stmt!=null)stmt.close();
 				FactoryConexion.getInstancia().releaseConn();
 			} catch (SQLException e) {
-				throw e;
+				AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+				throw ape;
 			}
 	}
 
@@ -98,7 +101,7 @@ import entities.TipoElemento;
 //					return reservas;
 //				}
 			
-			public ArrayList<Reserva> getAll() throws Exception{
+			public ArrayList<Reserva> getAll() throws AppDataException{
 				Statement stmt = null;
 				ResultSet rs = null;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
@@ -141,13 +144,15 @@ import entities.TipoElemento;
 							}	
 						}
 					}catch (Exception e) {
-						throw e;
+						AppDataException ape = new AppDataException(e, "Ha ocurrido un error, por favor intentelo mas tarde");
+						throw ape;
 					}try {
 						if(rs!=null) rs.close();
 						if(stmt!=null) stmt.close();
 						FactoryConexion.getInstancia().releaseConn();
 						} catch (SQLException e) {
-							throw e;
+							AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+							throw ape;
 							}
 					return reservas;
 				}
@@ -182,7 +187,7 @@ import entities.TipoElemento;
 //					return reservas;
 //				}
 		
-			public ArrayList<Reserva> getAll(Elemento el) throws Exception{
+			public ArrayList<Reserva> getAll(Elemento el) throws AppDataException{
 				PreparedStatement stmt = null;
 				ResultSet rs = null;
 				ArrayList<Reserva> susReservas = new ArrayList<Reserva>();
@@ -226,18 +231,20 @@ import entities.TipoElemento;
 							}	
 						}
 					}catch (Exception e) {
-						throw e;
+						AppDataException ape = new AppDataException(e, "Ha ocurrido un error, por favor intentelo mas tarde");
+						throw ape;
 					}try {
 						if(rs!=null) rs.close();
 						if(stmt!=null) stmt.close();
 						FactoryConexion.getInstancia().releaseConn();
 						} catch (SQLException e) {
-							throw e;
+							AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+							throw ape;
 							}
 					return susReservas;
 				}
 			
-			public void delete(Reserva r) throws Exception {
+			public void delete(Reserva r) throws AppDataException {
 				PreparedStatement stmt=null;
 				try {
 					stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
@@ -246,18 +253,20 @@ import entities.TipoElemento;
 					stmt.executeUpdate();
 					
 				} catch (SQLException e) {
-					throw e;
+					AppDataException ape = new AppDataException(e, "Ha ocurrido un error, por favor intentelo mas tarde");
+					throw ape;
 				} 
 				
 				try {
 					if(stmt!=null)stmt.close();
 					FactoryConexion.getInstancia().releaseConn();
 				} catch (SQLException e) {
-					throw e;
+					AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+					throw ape;
 				}
 			}
 
-			public ArrayList<Reserva> getAll(Persona per) throws Exception{
+			public ArrayList<Reserva> getAll(Persona per) throws AppDataException{
 				PreparedStatement stmt = null;
 				ResultSet rs = null;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
@@ -301,18 +310,20 @@ import entities.TipoElemento;
 							}	
 						}
 					}catch (Exception e) {
-						throw e;
+						AppDataException ape = new AppDataException(e, "Ha ocurrido un error, por favor intentelo mas tarde");
+						throw ape;
 					}try {
 						if(rs!=null) rs.close();
 						if(stmt!=null) stmt.close();
 						FactoryConexion.getInstancia().releaseConn();
 						} catch (SQLException e) {
-							throw e;
+							AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+							throw ape;
 							}
 					return reservas;
 				}
 
-			public ArrayList<Reserva> getAllByIdElem(Reserva res)throws Exception{
+			public ArrayList<Reserva> getAllByIdElem(Reserva res)throws AppDataException{
 				Reserva r = null;
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 				PreparedStatement stmt=null;
@@ -335,7 +346,8 @@ import entities.TipoElemento;
 						
 					}
 				} catch (SQLException e) {
-					throw e;
+					AppDataException ape = new AppDataException(e, "Ha ocurrido un error, por favor intentelo mas tarde");
+					throw ape;
 				}
 				
 				try {
@@ -343,7 +355,8 @@ import entities.TipoElemento;
 					if(stmt!=null)stmt.close();
 					FactoryConexion.getInstancia().releaseConn();
 				} catch (SQLException e) {
-					throw e;
+					AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+					throw ape;
 				}
 				
 				return reservas;

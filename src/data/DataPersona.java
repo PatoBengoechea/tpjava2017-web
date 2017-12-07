@@ -3,10 +3,11 @@ package data;
 import java.util.ArrayList;
 import java.sql.*;
 import entities.*;
+import util.AppDataException;
 
 public class DataPersona {
 
-	public ArrayList<Persona> getAll() throws Exception{
+	public ArrayList<Persona> getAll() throws AppDataException{
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Persona> Personas = new ArrayList<Persona>();
@@ -29,7 +30,8 @@ public class DataPersona {
 				}
 		} 
 		}catch (Exception e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		try {
 			if(rs!=null) rs.close();
@@ -37,12 +39,13 @@ public class DataPersona {
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 	return Personas;
 	}
 	
-	public Persona getByDni(Persona per) throws Exception{
+	public Persona getByDni(Persona per) throws AppDataException{
 		Persona p=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -64,7 +67,8 @@ public class DataPersona {
 			}
 			
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		
 		try {
@@ -72,13 +76,14 @@ public class DataPersona {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		
 		return p;
 	}
 	
-	public Persona getById(Persona per) throws Exception{
+	public Persona getById(Persona per) throws AppDataException{
 		Persona p=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -101,7 +106,8 @@ public class DataPersona {
 					return p;
 			}
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		
 		try {
@@ -109,7 +115,8 @@ public class DataPersona {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		
 		return p;
@@ -118,7 +125,7 @@ public class DataPersona {
 	
 	
 	
-	public void add(Persona p) throws Exception{
+	public void add(Persona p) throws AppDataException{
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -136,17 +143,19 @@ public class DataPersona {
 			stmt.setBoolean(8, p.isAdmin());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 	}
 
-	public void delete(int idper) throws Exception{
+	public void delete(int idper) throws AppDataException{
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -156,7 +165,8 @@ public class DataPersona {
 		    stmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		} 
 		
 		try {
@@ -167,7 +177,7 @@ public class DataPersona {
 		}
 	}
 	
-	public void update(Persona per) throws Exception {
+	public void update(Persona per) throws AppDataException {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn()
@@ -184,13 +194,15 @@ public class DataPersona {
 			stmt.executeUpdate();
 			}
 		catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 		try {
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
-			throw e;
+			AppDataException ape = new AppDataException(e, "Ha ocurrido un error al eliminar el Tipo.");
+			throw ape;
 		}
 	
 	}
