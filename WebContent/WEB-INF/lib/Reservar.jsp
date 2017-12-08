@@ -168,12 +168,22 @@ if(per2.isAdmin()){%>
 	<input type="hidden" name="diasanti" value=<%= tipo2.getDiasmaxanti()%>>
 	</div>
 	<div class="form-group">
-    <label for="fecha-inic">Fecha de Inicio</label>
-    <input  type="text" class="form-control" name="fechaini" style="width:300px; height:35px" >
+    <label for="fecha-inic">Dia Inicio</label><input  type="text" class="form-control" name="diaini" style="width:75px; height:35px" >
+    <label for="fecha-inic">Mes Inicio</label><input  type="text" class="form-control" name="mesini" style="width:75px; height:35px" >
+    <label for="fecha-inic">Anio Inicio</label><input  type="text" class="form-control" name="anioini" style="width:75px; height:35px" >
   	</div>
   	<div class="form-group">
-    <label for="fecha-fin">Fecha de Fin de Rerserva</label>
-    <input type="text" class="form-control" name="fechafin" style="width:300px;height:35px" >
+  	<label for="fecha-inic">Dia Fin</label><input  type="text" class="form-control" name="diafin" style="width:75px; height:35px" >
+    <label for="fecha-inic">Dia Fin</label>
+    <input  type="text" class="form-control" name="diafin" style="width:75px; height:35px" >
+    <label for="fecha-inic">Mes Fin</label>
+    <input  type="text" class="form-control" name="mesfin" style="width:75px; height:35px" >
+    <label for="fecha-inic">Anio Fin</label>
+    <input  type="text" class="form-control" name="aniofin" style="width:75px; height:35px" >
+  	</div>
+  	<div class="form-group">
+    <label>Ingrese un mail para mandar el comprobante ( OPCIONAL )</label>
+    <input type="text" class="form-control" name="mail" style="width:300px;height:35px" >
   	</div>
 	<%}}%>
 	<%if(iband == 0){ %>

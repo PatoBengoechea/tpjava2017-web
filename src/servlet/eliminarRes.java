@@ -8,11 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import controlers.CtrlABMCReserva;
+import entities.Persona;
 import entities.Reserva;
 import util.AppDataException;
 
@@ -61,7 +63,13 @@ public class eliminarRes extends HttpServlet {
 		    out.println("location='login.html';");
 		    out.println("</script>");
 		}
-		request.getRequestDispatcher("WEB-INF/lib/mostrarTodasReservas.jsp").forward(request, response);
+		HttpSession sesion = request.getSession();
+		Persona per2 = (Persona)sesion.getAttribute("user");
+		if(per2.isAdmin()){
+		request.getRequestDispatcher("WEB-INF/lib/mostrarTodasReservas.jsp").forward(request, response);}
+		else{
+		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);}
+		}
 	}
 
-}
+

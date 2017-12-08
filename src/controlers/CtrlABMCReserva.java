@@ -20,7 +20,7 @@ public class CtrlABMCReserva {
 	}
 	
 	
-	public String addReserva(Reserva r, int diasmaxres, int diasmaxanti)throws AppDataException{
+	public String addReserva(Reserva r, int diasmaxres, int diasmaxanti, String mail)throws AppDataException{
 		String message = "";
 		Date fechaFin = r.getFechaFin();
 		Date fechaIni = r.getFechaInicio();
@@ -41,21 +41,27 @@ public class CtrlABMCReserva {
 				System.out.println("Correcto");
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 				reservas = datar.getAllByIdElem(r);
-				int flag = 0;
 				for (Reserva res : reservas) {
 					if(r.getFechaInicio().after(res.getFechaFin()) || r.getFechaFin().before(res.getFechaInicio()))
 					{
 						datar.add(r);
 						message = "Reserva realizada" ;
-						Emailer.getInstance().send("nico.scandolo@live.com","Reservas", message + "Numero de Reserva" + r.getIdReserva());
+						if(mail.isEmpty()){
+						System.out.println("no mail");
+						message = "Reserva realizada sin mail de comfirmacion";	
+						}
+						else{
+						System.out.println(mail);
+						Emailer.getInstance().send(mail,"Reservas", message + "Numero de Reserva: " + r.getIdReserva() +
+								" Fecha de Inicio: " + r.getFechaInicio() + " Fecha de Fin: " + r.getFechaFin() + " en el lugar " + r.getElemento().getDescripcion());
 						break;
+						}
 					}
 					else
 					{
 						message = "No se puede realizar la reserva porque ya esta en uso en esa fecha. ";
 					}
 				}
-				
 			}
 			else if (diasmaxres < diasreserva){
 				System.out.println("sobre pasa los dias de reserva maximos");

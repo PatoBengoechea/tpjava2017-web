@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Session;
 import org.apache.logging.log4j.LogManager;
@@ -59,22 +60,23 @@ public class realizaActualizaReserva extends HttpServlet {
 		else{
 	    CtrlABMCReserva controlador = new CtrlABMCReserva();
 	    CtrlABMCElemento controladorElemento = new CtrlABMCElemento();
-	    CtrlABMCPersona controladorPersona = new CtrlABMCPersona();
-	    String fechaini = request.getParameter("fechaini").toString();
-	    String fechafin = request.getParameter("fechafin").toString();
+	    String fechaini = request.getParameter("anioini").toString() + "-" + request.getParameter("mesini").toString() + "-" + request.getParameter("diaini").toString();
+	    String fechafin = request.getParameter("aniofin").toString() + "-" + request.getParameter("mesfin").toString() + "-" + request.getParameter("diafin").toString();
 	    String diasanti = request.getParameter("diasanti").toString();
 	    String diasres = request.getParameter("diasmax").toString();
+	    String mailUser = "";
+	    if(!(request.getParameter("mail") == null)){
+	    mailUser = request.getParameter("mail").toString();
+	    }
 	    Reserva r = new Reserva();
 	    Elemento e = new Elemento();
 	    Persona p = (Persona)request.getSession().getAttribute("user");
 	    p.setIdPersona(p.getIdPersona());
 		String idElem = request.getParameter("elemento").toString();
 		e.setIdElemento(idElem);
-		
 			try {
 				r.setElemento(controladorElemento.buscarElemento(e));
-			} catch (AppDataException ape) {
-				
+			} catch (AppDataException ape) {		
 				logger = LogManager.getLogger(getClass());
 				logger = LogManager.getLogger(getClass());
 				logger.error(ape.getInnerException().getMessage());
@@ -84,10 +86,6 @@ public class realizaActualizaReserva extends HttpServlet {
 			    out.println("location='login.html';");
 			    out.println("</script>");
 			}
-		
-		
-			
-		
 		r.setPersona(p);
 		Date fInicio = Date.valueOf(fechaini);
 		Date fFin = Date.valueOf(fechafin);
@@ -97,7 +95,7 @@ public class realizaActualizaReserva extends HttpServlet {
 		int dres = Integer.parseInt(diasres);
 		String message = "No se pudo realizar la Reserva";
 		try {
-			message = controlador.addReserva(r,dres,danti);
+		message = controlador.addReserva(r,dres,danti,mailUser);
 		} catch (AppDataException ape) {
 			logger = LogManager.getLogger(getClass());
 			logger = LogManager.getLogger(getClass());
@@ -114,8 +112,10 @@ public class realizaActualizaReserva extends HttpServlet {
 	    out.println("location='index.jsp';");
 	    out.println("</script>");
 	    out.println();
-	    //response.sendRedirect("WEB-INF/lib/Reservar.jsp");
-		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);
+		if(p.isAdmin()){
+		request.getRequestDispatcher("WEB-INF/lib/mostrarTodasReservas.jsp").forward(request, response);}
+		else{
+		request.getRequestDispatcher("WEB-INF/lib/mostrarReservas.jsp").forward(request, response);}
 		}
 	}
 
