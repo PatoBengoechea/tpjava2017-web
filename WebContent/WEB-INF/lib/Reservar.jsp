@@ -168,18 +168,18 @@ if(per2.isAdmin()){%>
 	<input type="hidden" name="diasanti" value=<%= tipo2.getDiasmaxanti()%>>
 	</div>
 	<div class="form-group">
-    <label for="fecha-inic">Dia Inicio</label><input  type="text" class="form-control" name="diaini" style="width:75px; height:35px" >
-    <label for="fecha-inic">Mes Inicio</label><input  type="text" class="form-control" name="mesini" style="width:75px; height:35px" >
-    <label for="fecha-inic">Anio Inicio</label><input  type="text" class="form-control" name="anioini" style="width:75px; height:35px" >
+    <label class="text-inline" for="fecha-inic">Dia Inicio  <input  type="text" class="form-control" name="diaini" style="width:75px; height:35px" > </label>
+    <label class="text-inline" for="fecha-inic">Mes Inicio  <input  type="text" class="form-control" name="mesini" style="width:75px; height:35px" > </label>
+    <label class="text-inline" for="fecha-inic">Anio Inicio  <input  type="text" class="form-control" name="anioini" style="width:75px; height:35px" > </label>
   	</div>
   	<div class="form-group">
   	
-    <label for="fecha-inic">Dia Fin</label>
-    <input  type="text" class="form-control" name="diafin" style="width:75px; height:35px" >
-    <label for="fecha-inic">Mes Fin</label>
-    <input  type="text" class="form-control" name="mesfin" style="width:75px; height:35px" >
-    <label for="fecha-inic">Anio Fin</label>
-    <input  type="text" class="form-control" name="aniofin" style="width:75px; height:35px" >
+    <label class="text-inline" for="fecha-inic">Dia Fin 
+    <input  type="text" class="form-control" name="diafin" style="width:75px; height:35px" ></label>
+    <label class="text-inline" for="fecha-inic">Mes Fin 
+    <input  type="text" class="form-control" name="mesfin" style="width:75px; height:35px" > </label>
+    <label class="text-inline" for="fecha-inic">Anio Fin 
+    <input  type="text" class="form-control" name="aniofin" style="width:75px; height:35px" > </label>
   	</div>
   	<div class="form-group">
     <label>Ingrese un mail para mandar el comprobante ( OPCIONAL )</label>

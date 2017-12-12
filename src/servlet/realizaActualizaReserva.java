@@ -87,10 +87,21 @@ public class realizaActualizaReserva extends HttpServlet {
 			    out.println("</script>");
 			}
 		r.setPersona(p);
-		Date fInicio = Date.valueOf(fechaini);
-		Date fFin = Date.valueOf(fechafin);
-		r.setFechaInicio(fInicio);
-		r.setFechaFin(fFin);
+		try {
+			Date fInicio = Date.valueOf(fechaini);
+			Date fFin = Date.valueOf(fechafin);
+			r.setFechaInicio(fInicio);
+			r.setFechaFin(fFin);
+		}
+		catch(Exception exfecha)
+		{
+			PrintWriter out = response.getWriter(); 
+			out.println("<script type=\"text/javascript\">");
+		    out.println("alert('Ha ingresado mal la fecha ');");
+		    out.println("location='login.html';");
+		    out.println("</script>");
+		}
+		
 		int danti = Integer.parseInt(diasanti);
 		int dres = Integer.parseInt(diasres);
 		String message = "No se pudo realizar la Reserva";
