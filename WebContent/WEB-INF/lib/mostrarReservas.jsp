@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="javax.websocket.Session"%>
 <%@page import="entities.Persona"%>
 <%@page import="controlers.CtrlABMCReserva"%>
@@ -68,7 +69,9 @@
     per.setIdPersona((Integer)session.getAttribute(("idPersona")));
     CtrlABMCReserva ctrl = new CtrlABMCReserva();
     lista = ctrl.getAll(per);
-		for (Reserva res : lista){ %>
+    Date today = new Date();
+	for (Reserva res : lista){
+	if(res.getFechaFin().after(today))%>
     <tbody>
       <tr>
         <td><%= res.getIdReserva()%></td>

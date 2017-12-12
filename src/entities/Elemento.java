@@ -13,28 +13,11 @@ public class Elemento implements Serializable {
 	private String descripcion;
 	private int capacidad;
 	private TipoElemento tipo;
-	CtrlABMCTipoElemento ctrl;
 	private ArrayList<Reserva> reservas;
-	private static int ult = 0;
+	public CtrlABMCTipoElemento ctrl;
 	
 	public ArrayList<Reserva> getReservas() {
 		return reservas;
-	}
-
-	public CtrlABMCTipoElemento getCtrl() {
-		return ctrl;
-	}
-
-	public void setCtrl(CtrlABMCTipoElemento ctrl) {
-		this.ctrl = ctrl;
-	}
-
-	public static int getUlt() {
-		return ult;
-	}
-
-	public static void setUlt(int ult) {
-		Elemento.ult = ult;
 	}
 
 	public void setReservas(ArrayList<Reserva> reservas) {
@@ -56,15 +39,18 @@ public class Elemento implements Serializable {
 	public TipoElemento getTipo() {
 		return tipo;
 	}
+	
 	public void setTipo(TipoElemento tipo) {
 		this.tipo = tipo;
 	}
+	
 	public void setTipo(int idtipo) throws AppDataException{
 		TipoElemento tipoe = new TipoElemento(idtipo);
 		TipoElemento tiponuevo = new TipoElemento();
 		tiponuevo = ctrl.buscarTipoElemento(tipoe);
 		this.tipo = tiponuevo;
 	}
+	
 	public int getIdElemento() {
 		return idElemento;
 	}
@@ -75,6 +61,7 @@ public class Elemento implements Serializable {
 	public void setIdElemento(String i) {
 		this.idElemento = Integer.parseInt(i);
 	}
+	
 	public String getUbicacion() {
 		return ubicacion;
 	}

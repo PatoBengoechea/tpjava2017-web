@@ -173,7 +173,6 @@ if(per2.isAdmin()){%>
     <label class="text-inline" for="fecha-inic">Anio Inicio  <input  type="text" class="form-control" name="anioini" style="width:75px; height:35px" > </label>
   	</div>
   	<div class="form-group">
-  	
     <label class="text-inline" for="fecha-inic">Dia Fin 
     <input  type="text" class="form-control" name="diafin" style="width:75px; height:35px" ></label>
     <label class="text-inline" for="fecha-inic">Mes Fin 

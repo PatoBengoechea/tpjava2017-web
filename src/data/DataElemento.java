@@ -142,8 +142,7 @@ public class DataElemento {
 	}
 	
 	public ArrayList<Elemento> getByTipo(TipoElemento tipo) throws AppDataException{
-
-		ArrayList<Elemento> es = new ArrayList<Elemento>();
+		ArrayList<Elemento> listaElementos = new ArrayList<Elemento>();
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
@@ -164,24 +163,22 @@ public class DataElemento {
 					TipoElemento te2 = new TipoElemento();
 					te2 = dt.getById(te);
 					t.setTipo(te2);
-					es.add(t);
+					listaElementos.add(t);
 					}	
 				}
 		} catch (SQLException ex) {
-			AppDataException ape = new AppDataException(ex, "Ha ocurrido un error al eliminar el Tipo.");
+			AppDataException ape = new AppDataException(ex, "Ha ocurrido un error al recuperar el Tipo");
 			throw ape;
 		}
-		
 		try {
 			if(rs!=null)rs.close();
 			if(stmt!=null)stmt.close();
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException ex) {
-			AppDataException ape = new AppDataException(ex, "Ha ocurrido un error al eliminar el Tipo.");
+			AppDataException ape = new AppDataException(ex, "Ha ocurrido un error al recuperar el Tipo");
 			throw ape;
 		}
-		
-		return es;
+		return listaElementos;
 	}
 	
 	

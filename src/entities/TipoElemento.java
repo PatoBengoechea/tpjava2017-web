@@ -7,9 +7,10 @@ public class TipoElemento implements Serializable {
 	private int idTipo;
 	private String descTipo;
 	private int cantdiasMax;
-	private static int ult;
 	private boolean soloEnc;
 	private int diasmaxanti;
+	
+	public TipoElemento(){}
 	
 	public boolean isSoloEnc(){
 		return soloEnc;
@@ -44,22 +45,8 @@ public class TipoElemento implements Serializable {
 		this.cantdiasMax = cant;
 	}
 
-	public TipoElemento(){
-	}
-	
 	public TipoElemento(int idtipo){
 		this.idTipo = idtipo;
-	}
-	
-	public TipoElemento(String dTipo, int cantD){
-		this.setIdTipo(getUlt());
-		this.setDescTipo(dTipo);
-		this.setCantdiasMax(cantD);
-		actualizarUltimo();
-	}
-
-	private void actualizarUltimo() {
-		setUlt(getUlt()+1);
 	}
 
 	public int getIdTipo() {
@@ -78,13 +65,6 @@ public class TipoElemento implements Serializable {
 		this.descTipo = descTipo;
 	}
 
-	public static int getUlt() {
-		return ult;
-	}
-
-	public static void setUlt(int ult) {
-		TipoElemento.ult = ult;
-	}
 }
 
 

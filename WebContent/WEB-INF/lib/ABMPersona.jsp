@@ -79,7 +79,6 @@
     ArrayList<Persona> lista = new ArrayList<Persona>();
     CtrlABMCPersona ctrl = new CtrlABMCPersona();
     lista = ctrl.getAll();
-
 		for (Persona tipo : lista){ %>
     <tbody>
       <tr>
