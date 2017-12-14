@@ -25,20 +25,14 @@ public class CtrlABMCReserva {
 		Date fechaFin = r.getFechaFin();
 		Date fechaIni = r.getFechaInicio();
 		java.util.Date fechaHoy = new java.util.Date();
-		System.out.println(diasmaxres);
-		System.out.println(diasmaxanti);
 		int diasreserva =(int)((fechaFin.getTime()-fechaIni.getTime())/86400000);
-		System.out.println(diasreserva);
 		int diasanticipo =(int)((fechaIni.getTime()-fechaHoy.getTime())/86400000);
-		System.out.println(diasanticipo);
 		int band = 0;
 		if(fechaIni.after(fechaFin) || fechaIni.before(fechaHoy)){
 			message = "Ingrese nuevamente las fechas por fechas validas. ";
-			System.out.println("Ingrese nuevamente las fechas por fechas validas");
 		}
 		else{
 			if(diasmaxres >= diasreserva && diasmaxanti >= diasanticipo){
-				System.out.println("Correcto");
 				ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 				reservas = datar.getAllByIdElem(r);
 				for (Reserva res : reservas) {
@@ -47,7 +41,6 @@ public class CtrlABMCReserva {
 						datar.add(r);
 						message = "Reserva realizada" ;
 						if(mail.isEmpty()){
-						System.out.println("no mail");
 						message = "Reserva realizada sin mail de comfirmacion";	
 						}
 						else{
@@ -64,12 +57,10 @@ public class CtrlABMCReserva {
 				}
 			}
 			else if (diasmaxres < diasreserva){
-				System.out.println("sobre pasa los dias de reserva maximos");
 				message = message + "Sobre pasa los dias  de reserva maximos";
 				band = 1;
 			}
 			else if (diasmaxanti < diasanticipo){
-				System.out.println("sobre pasa los dias de anticipacion");
 				if(band==0) {
 					message = message + "Sobre pasa los dias  de anticipacion";
 				}

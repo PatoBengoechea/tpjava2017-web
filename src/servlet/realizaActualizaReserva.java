@@ -78,7 +78,6 @@ public class realizaActualizaReserva extends HttpServlet {
 				r.setElemento(controladorElemento.buscarElemento(e));
 			} catch (AppDataException ape) {		
 				logger = LogManager.getLogger(getClass());
-				logger = LogManager.getLogger(getClass());
 				logger.error(ape.getInnerException().getMessage());
 				PrintWriter out = response.getWriter(); 
 				out.println("<script type=\"text/javascript\">");
@@ -108,7 +107,6 @@ public class realizaActualizaReserva extends HttpServlet {
 		try {
 		message = controlador.addReserva(r,dres,danti,mailUser);
 		} catch (AppDataException ape) {
-			logger = LogManager.getLogger(getClass());
 			logger = LogManager.getLogger(getClass());
 			logger.error(ape.getInnerException().getMessage());
 			PrintWriter out = response.getWriter(); 

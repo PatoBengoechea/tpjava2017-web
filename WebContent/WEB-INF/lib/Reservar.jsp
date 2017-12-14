@@ -1,4 +1,3 @@
-
 <%@page import="entities.Elemento"%>
 <%@page import="controlers.CtrlABMCElemento"%>
 <%@page import="java.util.ArrayList"%>
